@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* --- DESIGN SYSTEM (DASHBOARD) --- */
+    /* --- DESIGN SYSTEM (DASHBOARD DARK) --- */
     :root {
       --bg: #09090b;
       --sidebar: #050505;
@@ -195,7 +195,7 @@
     .download-box {
         display: flex; justify-content: space-between; align-items: center;
         background: radial-gradient(circle at right, #0f2e15 0%, #121212 60%);
-        cursor: pointer; /* Agora é clicável para abrir modal */
+        cursor: pointer;
     }
     .download-box:hover { border-color: var(--neon); }
 
@@ -243,11 +243,11 @@
     /* MODAIS (GERAL) */
     dialog {
         background: #111; color: #fff; border: 1px solid #333; border-radius: 16px;
-        padding: 0; width: 90%; max-width: 700px;
+        padding: 0; width: 90%; max-width: 800px;
         box-shadow: 0 0 100px rgba(0,0,0,0.9);
         position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
     }
-    dialog::backdrop { background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
+    dialog::backdrop { background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
 
     .modal-header {
         padding: 20px 30px; border-bottom: 1px solid #222;
@@ -262,15 +262,13 @@
     /* VIDEO CONTAINER */
     .video-container {
         width: 100%; aspect-ratio: 16/9; background: #000;
-        display: flex; align-items: center; justify-content: center;
         position: relative; border-bottom: 1px solid #222;
+        overflow: hidden;
     }
-    .play-btn-fake {
-        width: 70px; height: 70px; background: rgba(255,255,255,0.1); border-radius: 50%;
-        display: flex; align-items: center; justify-content: center; color: #fff; font-size: 2rem;
-        border: 2px solid #fff; cursor: pointer; transition: 0.3s;
+    /* Classe para iframes do youtube para ser responsivo */
+    .video-container iframe {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     }
-    .play-btn-fake:hover { background: var(--neon); border-color: var(--neon); color: #000; }
 
     /* BOTÕES DENTRO DO MODAL */
     .btn-steam-official {
@@ -405,7 +403,7 @@
             <div class="card community-card">
                 <h3>GRUPO VIP</h3>
                 <p>Entre na comunidade oficial no WhatsApp e receba novidades.</p>
-                <button class="btn-whatsapp" onclick="window.open('https://chat.whatsapp.com/SEU_LINK_AQUI', '_blank')">
+                <button class="btn-whatsapp" onclick="window.open('SEU_LINK_DO_GRUPO_WHATSAPP', '_blank')">
                     ENTRAR NO GRUPO
                 </button>
             </div>
@@ -429,7 +427,7 @@
           <button class="modal-close" onclick="closeModal('steam')">✕</button>
       </div>
       <div class="video-container">
-          <div class="play-btn-fake" onclick="alert('Imagine um vídeo tutorial aqui.')">▶</div>
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/e8b9imle-Js" title="Instalar Steam" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       <div class="modal-body">
           <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
@@ -450,7 +448,7 @@
           <button class="modal-close" onclick="closeModal('script')">✕</button>
       </div>
       <div class="video-container">
-          <div class="play-btn-fake" onclick="alert('Imagine um vídeo tutorial do PowerShell aqui.')">▶</div>
+           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/cOUO-2fmybA" title="Remover Bugs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       <div class="modal-body">
           <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
@@ -477,14 +475,17 @@
         <h3>Passo 3: Instalar Bypass (Opcional)</h3>
         <button class="modal-close" onclick="closeModal('bypass')">✕</button>
     </div>
+    <!-- VIDEO PLACEHOLDER (Já que não foi enviado link específico, mantive o placeholder visual, mas pronto para iframe) -->
     <div class="video-container">
-        <div class="play-btn-fake" onclick="alert('Imagine um vídeo tutorial do Bypass aqui.')">▶</div>
+        <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111; color:#666;">
+            Vídeo Tutorial em Breve
+        </div>
     </div>
     <div class="modal-body">
         <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
             Este passo é necessário apenas se você deseja jogar títulos específicos em modo Online ou que utilizam Denuvo.<br><br>
             1. Baixe o arquivo abaixo.<br>
-            2. Extraia na pasta raiz do jogo desejado (Siga o vídeo).
+            2. Extraia na pasta raiz do jogo desejado (Siga o vídeo quando disponível).
         </p>
         
         <button class="btn-bypass" onclick="window.open('SEU_LINK_DO_BYPASS_AQUI', '_blank')">
@@ -500,7 +501,7 @@
           <button class="modal-close" onclick="closeModal('launcher')">✕</button>
       </div>
       <div class="video-container">
-          <div class="play-btn-fake" onclick="alert('Imagine um vídeo tutorial de instalação do Launcher aqui.')">▶</div>
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/CfldgBewzV8" title="Instalar Launcher" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       <div class="modal-body">
           <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
