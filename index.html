@@ -375,13 +375,13 @@
              <div class="card bypass-box-card" onclick="openModal('bypass')">
                 <div class="step-info">
                     <span class="step-number-purple">PASSO 03 - OPCIONAL</span>
-                    <h3>Instalar Bypass</h3>
-                    <p style="color:#aaa; font-size:0.9rem">Necessário apenas para jogar títulos específicos.</p>
+                    <h3>Instalar Bypass (Denuvo)</h3>
+                    <p style="color:#aaa; font-size:0.9rem">Necessário apenas para jogar títulos específicos Online.</p>
                 </div>
                 <div class="step-btn-action-purple">🔓</div>
             </div>
 
-            <!-- PASSO 4: LAUNCHER (AGORA COM MODAL E VÍDEO) -->
+            <!-- PASSO 4: LAUNCHER (AGORA COM MODAL E VÍDEO NOVO) -->
             <div class="card download-box" onclick="openModal('launcher')">
                 <div class="dl-info">
                     <span class="step-number" style="color:var(--neon)">PASSO 04 - FINAL</span>
@@ -477,8 +477,8 @@
         <button class="modal-close" onclick="closeModal('bypass')">✕</button>
     </div>
     <div class="video-container">
-         <iframe width="100%" height="100%" src="https://youtu.be/aqB-Ronajp0" title="instalar bypass" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
+        <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111; color:#666;">
+            Vídeo Tutorial em Breve
         </div>
     </div>
     <div class="modal-body">
@@ -495,14 +495,16 @@
     </div>
 </dialog>
 
-  <!-- MODAL LAUNCHER (NOVO) -->
+  <!-- MODAL LAUNCHER (VÍDEO ATUALIZADO) -->
   <dialog id="modal-launcher">
       <div class="modal-header">
           <h3>Passo 4: Instalar o Launcher</h3>
           <button class="modal-close" onclick="closeModal('launcher')">✕</button>
       </div>
       <div class="video-container">
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/CfldgBewzV8" title="Instalar Launcher" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <!-- VÍDEO DO ANÚNCIO (aqB-Ronajp0) INTEGRADO -->
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/aqB-Ronajp0" title="Instalar Launcher" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
       <div class="modal-body">
           <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
               Agora vamos instalar o software principal. Siga o vídeo acima para garantir que tudo funcione.<br><br>
@@ -543,6 +545,3 @@
 
 </body>
 </html>
-
-
-
