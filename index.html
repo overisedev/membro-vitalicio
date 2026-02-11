@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>OVERISE | Área do Membro</title>
   
-  <!-- Fontes Premium -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <!-- Ícones FontAwesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
   <style>
@@ -334,13 +332,11 @@
 </head>
 <body>
 
-  <!-- TOPBAR (NOVO) -->
   <header class="topbar">
     <div class="logo">OVER<span>ISE</span></div>
     <div class="user-badge">CLIENTE VIP</div>
   </header>
 
-  <!-- MAIN -->
   <main class="main">
     <div class="header-title">
         <h1>Painel do Cliente</h1>
@@ -351,7 +347,6 @@
         
         <div class="left-col">
             
-            <!-- PASSO 1: INSTALAÇÃO DA STEAM -->
             <div class="card step-card" onclick="openModal('steam')">
                 <div class="step-info">
                     <span class="step-number">PASSO 01 - OBRIGATÓRIO</span>
@@ -361,7 +356,6 @@
                 <div class="step-btn-action">➜</div>
             </div>
 
-            <!-- PASSO 2: OTIMIZAÇÃO (SCRIPT) -->
             <div class="card script-box-card" onclick="openModal('script')">
                 <div class="step-info">
                     <span class="step-number-orange">PASSO 02 - CORREÇÃO</span>
@@ -371,7 +365,6 @@
                 <div class="step-btn-action-orange">⚙️</div>
             </div>
 
-             <!-- PASSO 3: BYPASS (CORRIGIDO) -->
              <div class="card bypass-box-card" onclick="openModal('bypass')">
                 <div class="step-info">
                     <span class="step-number-purple">PASSO 03 - OPCIONAL</span>
@@ -381,7 +374,6 @@
                 <div class="step-btn-action-purple">🔓</div>
             </div>
 
-            <!-- PASSO 4: LAUNCHER (AGORA COM MODAL E VÍDEO NOVO) -->
             <div class="card download-box" onclick="openModal('launcher')">
                 <div class="dl-info">
                     <span class="step-number" style="color:var(--neon)">PASSO 04 - FINAL</span>
@@ -403,7 +395,6 @@
                 <div class="status-badge">VITALÍCIO</div>
             </div>
             
-            <!-- COMUNIDADE VIP -->
             <div class="card community-card">
                 <h3>GRUPO VIP</h3>
                 <p>Entre na comunidade oficial no WhatsApp e receba novidades.</p>
@@ -416,12 +407,10 @@
     </div>
   </main>
 
-  <!-- BOTÃO FLUTUANTE WHATSAPP (FIXO) -->
   <a href="https://wa.me/5521999653187" target="_blank" class="fab-whatsapp" title="Suporte via WhatsApp">
       <i class="fa-brands fa-whatsapp"></i>
   </a>
 
-  <!-- MODAL STEAM -->
   <dialog id="modal-steam">
       <div class="modal-header">
           <h3>Passo 1: Instalar Steam</h3>
@@ -442,7 +431,6 @@
       </div>
   </dialog>
 
-  <!-- MODAL SCRIPT -->
   <dialog id="modal-script">
       <div class="modal-header">
           <h3>Passo 2: Script Anti-Bug</h3>
@@ -470,16 +458,13 @@
       </div>
   </dialog>
 
-  <!-- MODAL BYPASS (LINK CORRIGIDO) -->
   <dialog id="modal-bypass">
     <div class="modal-header">
         <h3>Passo 3: Instalar Bypass (alguns jogos precisam)</h3>
         <button class="modal-close" onclick="closeModal('bypass')">✕</button>
     </div>
     <div class="video-container">
-        <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#111; color:#666;">
-            Vídeo Tutorial em Breve
-        </div>
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/aqB-Ronajp0" title="Instalar Bypass" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
     <div class="modal-body">
         <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
@@ -488,21 +473,18 @@
             2. Siga as instruções do site.
         </p>
         
-        <!-- LINK CORRIGIDO AQUI -->
         <a href="https://generator.ryuu.lol/fixes" target="_blank" class="btn-bypass">
             <span>🔓</span> ACESSAR SITE BYPASS
         </a>
     </div>
 </dialog>
 
-  <!-- MODAL LAUNCHER (VÍDEO ATUALIZADO) -->
   <dialog id="modal-launcher">
       <div class="modal-header">
           <h3>Passo 4: Instalar o Launcher</h3>
           <button class="modal-close" onclick="closeModal('launcher')">✕</button>
       </div>
       <div class="video-container">
-          <!-- VÍDEO DO ANÚNCIO (aqB-Ronajp0) INTEGRADO -->
           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/aqB-Ronajp0" title="Instalar Launcher" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       <div class="modal-body">
