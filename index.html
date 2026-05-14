@@ -148,7 +148,7 @@
         font-size: 1.2rem; font-weight: bold; box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
     }
 
-    /* --- MÓDULO PASSO 3 (BYPASS) --- */
+    /* --- MÓDULO PASSO 3 (BYPASS ONLINE/FIX) --- */
     .bypass-box-card {
         background: radial-gradient(circle at top right, #3f0945 0%, #121212 60%);
         border: 1px solid #d946ef;
@@ -167,7 +167,26 @@
         font-size: 1.2rem; font-weight: bold; box-shadow: 0 0 20px rgba(217, 70, 239, 0.4);
     }
 
-    /* --- MÓDULO PASSO 4 (LAUNCHER) --- */
+    /* --- MÓDULO PASSO 4 (DENUVO) --- */
+    .denuvo-box-card {
+        background: radial-gradient(circle at top right, #083344 0%, #121212 60%);
+        border: 1px solid #06b6d4;
+        display: flex; align-items: center; justify-content: space-between;
+        cursor: pointer;
+    }
+    .denuvo-box-card:hover { border-color: #67e8f9; }
+
+    .step-number-cyan { 
+        font-size: 0.7rem; font-weight: 900; color: #06b6d4; text-transform: uppercase; 
+        letter-spacing: 1px; margin-bottom: 8px; display: block;
+    }
+    .step-btn-action-cyan {
+        background: #06b6d4; color: #000; width: 40px; height: 40px;
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem; font-weight: bold; box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+    }
+
+    /* --- MÓDULO PASSO 5 (LAUNCHER) --- */
     .download-box {
         display: flex; justify-content: space-between; align-items: center;
         background: radial-gradient(circle at right, #0f2e15 0%, #121212 60%);
@@ -313,6 +332,14 @@
     }
     .btn-bypass:hover { background: #fff; }
 
+    .btn-denuvo {
+        width: 100%; padding: 15px; background: #06b6d4; color: #000; border-radius: 8px;
+        font-weight: 800; border: none; cursor: pointer; font-size: 0.9rem;
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        text-decoration: none;
+    }
+    .btn-denuvo:hover { background: #fff; }
+
     /* MODAL LAUNCHER (VIDEO) */
     .btn-launcher-download {
         display: block; width: 100%; text-align: center;
@@ -368,15 +395,24 @@
              <div class="card bypass-box-card" onclick="openModal('bypass')">
                 <div class="step-info">
                     <span class="step-number-purple">PASSO 03 - OPCIONAL</span>
-                    <h3>Instalar Bypass (Denuvo)</h3>
-                    <p style="color:#aaa; font-size:0.9rem">Necessário apenas para jogar títulos específicos Online.</p>
+                    <h3>Fix: Jogos que não entram / Online</h3>
+                    <p style="color:#aaa; font-size:0.9rem">Necessário apenas para jogar títulos online ou se o jogo não abrir.</p>
                 </div>
                 <div class="step-btn-action-purple">🔓</div>
             </div>
 
+            <div class="card denuvo-box-card" onclick="openModal('denuvo')">
+                <div class="step-info">
+                    <span class="step-number-cyan">PASSO 04 - OPCIONAL</span>
+                    <h3>Jogos Denuvo - Como desbloquear?</h3>
+                    <p style="color:#aaa; font-size:0.9rem">Baixe o Bypass específico para liberar jogos com proteção Denuvo.</p>
+                </div>
+                <div class="step-btn-action-cyan">🛡️</div>
+            </div>
+
             <div class="card download-box" onclick="openModal('launcher')">
                 <div class="dl-info">
-                    <span class="step-number" style="color:var(--neon)">PASSO 04 - FINAL</span>
+                    <span class="step-number" style="color:var(--neon)">PASSO 05 - FINAL</span>
                     <h3>Baixar Launcher Overise</h3>
                     <p>Com o sistema pronto, baixe e instale nosso aplicativo.</p>
                     <button class="btn-download">
@@ -460,7 +496,7 @@
 
   <dialog id="modal-bypass">
     <div class="modal-header">
-        <h3>Passo 3: Instalar Bypass (alguns jogos precisam)</h3>
+        <h3>Passo 3: Fix (Jogos que não entram / Online)</h3>
         <button class="modal-close" onclick="closeModal('bypass')">✕</button>
     </div>
     <div class="video-container">
@@ -468,20 +504,42 @@
     </div>
     <div class="modal-body">
         <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
-            Este passo é necessário apenas se você deseja jogar títulos específicos em modo Online ou que utilizam Denuvo.<br><br>
-            1. Clique no botão abaixo para acessar o gerador.<br>
-            2. Siga as instruções do site.
+            Este passo é necessário apenas se você deseja jogar em modo Online ou se algum jogo não estiver abrindo.<br><br>
+            1. Clique no botão abaixo para acessar o site de correção.<br>
+            2. Siga as instruções da página.
         </p>
         
         <a href="https://generator.ryuu.lol/fixes" target="_blank" class="btn-bypass">
-            <span>🔓</span> ACESSAR SITE BYPASS
+            <span>🔓</span> ACESSAR SITE DE CORREÇÃO
+        </a>
+    </div>
+</dialog>
+
+  <dialog id="modal-denuvo">
+    <div class="modal-header">
+        <h3>Passo 4: Jogos Denuvo - Como desbloquear?</h3>
+        <button class="modal-close" onclick="closeModal('denuvo')">✕</button>
+    </div>
+    <div class="video-container">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/gOJ7PWaEm8c" title="Como desbloquear Jogos Denuvo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <div class="modal-body">
+        <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
+            Este passo é exclusivo para jogos que possuem a proteção <b>Denuvo</b>.<br><br>
+            1. Clique no botão abaixo para acessar a pasta do MediaFire com os arquivos.<br>
+            2. Baixe o Bypass correspondente ao jogo que você quer desbloquear.<br>
+            3. Extraia os arquivos e cole na pasta do jogo.
+        </p>
+        
+        <a href="https://www.mediafire.com/folder/qv8eo99h4wvhun9,zvyw9rygljlvpzv/shared" target="_blank" class="btn-denuvo">
+            <span>🛡️</span> BAIXAR BYPASS DENUVO
         </a>
     </div>
 </dialog>
 
   <dialog id="modal-launcher">
       <div class="modal-header">
-          <h3>Passo 4: Instalar o Launcher</h3>
+          <h3>Passo 5: Instalar o Launcher</h3>
           <button class="modal-close" onclick="closeModal('launcher')">✕</button>
       </div>
       <div class="video-container">
