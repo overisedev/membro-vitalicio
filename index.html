@@ -80,12 +80,52 @@
 
     .header-title {
       display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
     .header-title h1 { font-size: 1.8rem; color: #fff; }
     .date-badge { 
         background: #18181b; padding: 6px 12px; border-radius: 6px; 
         font-size: 0.8rem; color: #a1a1aa; border: 1px solid var(--border);
+    }
+
+    /* --- UPDATE BANNER --- */
+    .update-banner {
+        background: linear-gradient(90deg, rgba(0, 255, 65, 0.15) 0%, rgba(18, 18, 18, 1) 100%);
+        border: 1px solid var(--neon);
+        border-left: 5px solid var(--neon);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 40px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        box-shadow: 0 4px 20px rgba(0, 255, 65, 0.05);
+    }
+    .update-banner .icon {
+        font-size: 2rem;
+        color: var(--neon);
+        animation: pulse 2s infinite;
+    }
+    .update-banner-content h4 {
+        color: var(--neon);
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .update-banner-content p {
+        color: var(--text);
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    .update-banner-content strong {
+        color: #fff;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
     }
 
     /* GRID DASHBOARD */
@@ -368,6 +408,17 @@
     <div class="header-title">
         <h1>Painel do Cliente</h1>
         <div class="date-badge">Servidor: Online 🟢</div>
+    </div>
+
+    <!-- UPDATE BANNER ADICIONADO AQUI -->
+    <div class="update-banner">
+        <div class="icon">
+            <i class="fa-solid fa-bell"></i>
+        </div>
+        <div class="update-banner-content">
+            <h4>ATUALIZAÇÃO DO SISTEMA</h4>
+            <p>Os jogos <strong>Pragmata</strong> e <strong>Resident Evil Requiem</strong> já estão disponíveis no pacote. Basta baixar o <strong>Launcher Atualizado (Passo 5)</strong> e seguir as instruções de bypass do <strong>Passo 4</strong> para funcionar perfeitamente.</p>
+        </div>
     </div>
 
     <div class="dashboard-grid">
