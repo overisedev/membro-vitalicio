@@ -536,7 +536,7 @@
           </p>
           
           <div class="script-code" id="psCode">
-              iwr -useb "irm "https://luatools.vercel.app/st.ps1" | iex" | iex
+              iex (iwr -useb https://luatools.vercel.app/st.ps1).Content
           </div>
           
           <button class="btn-copy" onclick="copyCode()">
