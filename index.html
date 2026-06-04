@@ -2,637 +2,752 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="theme-color" content="#060607"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
   <title>OVERISE | Área do Membro</title>
-  
+
+  <!-- ============================================================
+       OVERISE — ÁREA DO MEMBRO (TIER VITALÍCIO • CATÁLOGO COMPLETO)
+       Mesmo design sofisticado, 5 passos (inclui Denuvo) + banner de novidades.
+       Download: OVERISE_SEASON2.exe (já configurado no <script> DOWNLOAD_URL).
+       ============================================================ -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
   <style>
-    /* --- DESIGN SYSTEM (DASHBOARD DARK) --- */
     :root {
-      --bg: #09090b;
-      --card: #121212;
-      --border: #27272a;
-      --text: #e4e4e7;
-      --neon: #00FF41;
-      --neon-dim: rgba(0, 255, 65, 0.1);
-      --font: 'Inter', sans-serif;
+      --bg:        #060607;
+      --bg-2:      #0b0b0e;
+      --card:      #111114;
+      --card-2:    #16161b;
+      --border:    #232329;
+      --border-2:  #34343d;
+      --text:      #e7e7ea;
+      --muted:     #8a8a94;
+      --muted-2:   #5c5c66;
+
+      --neon:      #00FF41;   /* verde marca */
+      --cyan:      #00e676;   /* verde secundário (acento) */
+      --gold:      #fbbf24;   /* selo VITALÍCIO (premium) */
+      --blue:      #66c0f4;   /* steam */
+      --orange:    #f59e0b;   /* script */
+      --purple:    #d946ef;   /* fix online */
+      --teal:      #06b6d4;   /* denuvo */
+
+      --font:  'Inter', sans-serif;
+      --head:  'Sora', 'Inter', sans-serif;
+
+      --sidebar-w: 260px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--bg);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(0,230,118,.08), transparent 60%),
+        radial-gradient(900px 500px at -10% 20%, rgba(0,255,65,.06), transparent 55%),
+        var(--bg);
       color: var(--text);
       font-family: var(--font);
       min-height: 100vh;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
     }
+    a { color: inherit; text-decoration: none; }
 
-    /* --- TOPBAR --- */
-    .topbar {
-        width: 100%;
-        padding: 20px 40px;
-        background: rgba(5, 5, 5, 0.8);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-    }
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-thumb { background: #26262d; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #34343d; }
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: -1px;
-    }
-    .logo span { color: var(--neon); }
+    /* ====================== LAYOUT ====================== */
+    .shell { display: grid; grid-template-columns: var(--sidebar-w) 1fr; min-height: 100vh; }
 
-    .user-badge {
-        background: var(--neon-dim);
-        border: 1px solid var(--neon);
-        color: var(--neon);
-        padding: 5px 12px;
-        border-radius: 50px;
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-transform: uppercase;
+    /* ---------- SIDEBAR ---------- */
+    .sidebar {
+      position: sticky; top: 0; height: 100vh;
+      background: linear-gradient(180deg, var(--bg-2), #060608);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      padding: 26px 18px;
     }
+    .brand { display: flex; align-items: center; gap: 12px; padding: 0 8px 22px; }
+    .brand-mark {
+      width: 40px; height: 40px; border-radius: 11px; flex: none;
+      background: conic-gradient(from 140deg, var(--neon), var(--cyan), var(--neon));
+      display: grid; place-items: center; color: #04130a; font-weight: 900;
+      font-family: var(--head); box-shadow: 0 0 24px rgba(0,230,118,.35);
+    }
+    .brand-name { font-family: var(--head); font-weight: 800; font-size: 1.15rem; letter-spacing: -.5px; color: #fff; }
+    .brand-name span { color: var(--neon); }
+    .brand-sub { font-size: .62rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; font-weight: 700; }
 
-    /* --- MAIN CONTENT --- */
-    .main {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      flex: 1;
+    .nav { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
+    .nav-label { font-size: .62rem; letter-spacing: 2px; color: var(--muted-2); text-transform: uppercase; padding: 16px 12px 6px; }
+    .nav a {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 13px; border-radius: 10px; color: var(--muted);
+      font-weight: 600; font-size: .9rem; transition: .18s; border: 1px solid transparent;
     }
+    .nav a i { width: 18px; text-align: center; font-size: .95rem; }
+    .nav a:hover { background: var(--card); color: #fff; }
+    .nav a.active { background: var(--card-2); color: #fff; border-color: var(--border-2); }
+    .nav a.active i { color: var(--cyan); }
 
-    .header-title {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 20px;
+    .side-card {
+      margin-top: auto; background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 16px; text-align: center;
     }
-    .header-title h1 { font-size: 1.8rem; color: #fff; }
-    .date-badge { 
-        background: #18181b; padding: 6px 12px; border-radius: 6px; 
-        font-size: 0.8rem; color: #a1a1aa; border: 1px solid var(--border);
+    .tier-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: linear-gradient(90deg, rgba(251,191,36,.14), rgba(0,230,118,.10));
+      border: 1px solid rgba(251,191,36,.45); color: var(--gold);
+      padding: 6px 13px; border-radius: 50px; font-size: .72rem; font-weight: 800; letter-spacing: .5px;
     }
+    .side-card h4 { font-family: var(--head); color: #fff; margin: 12px 0 2px; font-size: 1rem; }
+    .side-card p { color: var(--muted); font-size: .78rem; }
 
-    /* --- UPDATE BANNER --- */
-    .update-banner {
-        background: linear-gradient(90deg, rgba(0, 255, 65, 0.15) 0%, rgba(18, 18, 18, 1) 100%);
-        border: 1px solid var(--neon);
-        border-left: 5px solid var(--neon);
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 40px;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        box-shadow: 0 4px 20px rgba(0, 255, 65, 0.05);
-    }
-    .update-banner .icon {
-        font-size: 2rem;
-        color: var(--neon);
-        animation: pulse 2s infinite;
-    }
-    .update-banner-content h4 {
-        color: var(--neon);
-        font-size: 1.1rem;
-        margin-bottom: 8px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    .update-banner-content p {
-        color: var(--text);
-        font-size: 0.95rem;
-        line-height: 1.5;
-    }
-    .update-banner-content strong {
-        color: #fff;
-    }
-    
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
-    }
+    /* ---------- MAIN ---------- */
+    .main { padding: 26px 34px 80px; max-width: 1280px; }
 
-    /* GRID DASHBOARD */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 30px;
+    .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; flex-wrap: wrap; gap: 14px; }
+    .greeting h1 { font-family: var(--head); font-size: 1.55rem; color: #fff; letter-spacing: -.6px; }
+    .greeting p { color: var(--muted); font-size: .9rem; margin-top: 3px; }
+    .status-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--card); border: 1px solid var(--border); color: var(--muted);
+      padding: 9px 14px; border-radius: 50px; font-size: .78rem; font-weight: 700;
     }
+    .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--neon); box-shadow: 0 0 10px var(--neon); animation: blink 1.8s infinite; }
+    @keyframes blink { 50% { opacity: .35; } }
+    .pill.gold { color: var(--gold); border-color: rgba(251,191,36,.35); }
+    .pill.gold i { color: var(--gold); }
 
-    /* CARDS GERAIS */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 30px;
-      margin-bottom: 30px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s;
+    /* ---------- ALERT / BANNER NOVIDADES ---------- */
+    .alert {
+      display: flex; gap: 16px; align-items: center;
+      background: linear-gradient(90deg, rgba(0,255,65,.10), var(--card) 62%);
+      border: 1px solid var(--border-2); border-left: 4px solid var(--neon);
+      border-radius: 14px; padding: 18px 20px; margin-bottom: 24px;
     }
-    .card:hover { transform: translateY(-2px); }
-    .card h3 { color: #fff; margin-bottom: 15px; font-size: 1.1rem; }
+    .alert .ic {
+      width: 46px; height: 46px; flex: none; border-radius: 12px;
+      display: grid; place-items: center; background: rgba(0,255,65,.12);
+      color: var(--neon); font-size: 1.2rem; transform-origin: 50% 0;
+      animation: bell 3s infinite;
+    }
+    @keyframes bell { 0%,30%,100%{transform:rotate(0)} 5%{transform:rotate(14deg)} 10%{transform:rotate(-12deg)} 15%{transform:rotate(9deg)} 20%{transform:rotate(-6deg)} 25%{transform:rotate(0)} }
+    .alert h4 { font-family: var(--head); color: var(--neon); font-size: .9rem; letter-spacing: .6px; text-transform: uppercase; margin-bottom: 4px; }
+    .alert p { color: var(--muted); font-size: .86rem; line-height: 1.55; }
+    .alert p b { color: #fff; }
 
-    /* --- MÓDULO PASSO 1 (STEAM) --- */
-    .step-card {
-        background: radial-gradient(circle at top right, #1a237e 0%, #121212 60%); 
-        border: 1px solid #3f3f46;
-        display: flex; align-items: center; justify-content: space-between;
-        cursor: pointer;
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative; overflow: hidden;
+      background:
+        radial-gradient(700px 300px at 90% -40%, rgba(0,230,118,.18), transparent 60%),
+        linear-gradient(120deg, #0e1a14 0%, var(--card) 55%);
+      border: 1px solid var(--border-2); border-radius: 20px;
+      padding: 34px; margin-bottom: 26px;
+      display: grid; grid-template-columns: 1fr auto; gap: 26px; align-items: center;
     }
-    .step-card:hover { border-color: #66c0f4; }
-    
-    .step-info { max-width: 70%; }
-    .step-number { 
-        font-size: 0.7rem; font-weight: 900; color: #66c0f4; text-transform: uppercase; 
-        letter-spacing: 1px; margin-bottom: 8px; display: block;
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 22px 22px; opacity: .5; pointer-events: none;
     }
-    .step-btn-action {
-        background: #66c0f4; color: #000; width: 40px; height: 40px;
-        border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        font-size: 1.2rem; font-weight: bold; box-shadow: 0 0 20px rgba(102, 192, 244, 0.4);
-    }
+    .hero-tag { color: var(--cyan); font-weight: 800; font-size: .72rem; letter-spacing: 2px; text-transform: uppercase; }
+    .hero h2 { font-family: var(--head); font-size: 2rem; color: #fff; letter-spacing: -1px; margin: 8px 0 6px; line-height: 1.1; }
+    .hero h2 b { background: linear-gradient(90deg, var(--neon), var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero p { color: var(--muted); max-width: 470px; font-size: .92rem; line-height: 1.6; }
+    .hero-counter { font-family: var(--head); font-size: 3.4rem; font-weight: 800; color: #fff; line-height: 1; margin-top: 18px; }
+    .hero-counter small { font-size: .9rem; color: var(--muted); font-weight: 600; letter-spacing: 1px; display: block; margin-top: 4px; font-family: var(--font); }
 
-    /* --- MÓDULO PASSO 2 (SCRIPT) --- */
-    .script-box-card {
-        background: radial-gradient(circle at top right, #2b1c04 0%, #121212 60%);
-        border: 1px solid #d97706;
-        display: flex; align-items: center; justify-content: space-between;
-        cursor: pointer;
+    /* anel de progresso */
+    .ring-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    @property --p { syntax: '<number>'; inherits: false; initial-value: 0; }
+    .ring { --p: 0; width: 150px; height: 150px; border-radius: 50%;
+      background: conic-gradient(var(--cyan) calc(var(--p)*1%), #1d1d24 0);
+      display: grid; place-items: center; position: relative; transition: --p .6s ease;
     }
-    .script-box-card:hover { border-color: #f59e0b; }
-    
-    .step-number-orange { 
-        font-size: 0.7rem; font-weight: 900; color: #f59e0b; text-transform: uppercase; 
-        letter-spacing: 1px; margin-bottom: 8px; display: block;
-    }
-    .step-btn-action-orange {
-        background: #f59e0b; color: #000; width: 40px; height: 40px;
-        border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        font-size: 1.2rem; font-weight: bold; box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
-    }
+    .ring::before { content: ''; position: absolute; inset: 12px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); }
+    .ring-inner { position: relative; text-align: center; }
+    .ring-inner b { font-family: var(--head); font-size: 1.7rem; color: #fff; }
+    .ring-inner span { display: block; font-size: .66rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+    .ring-label { font-size: .78rem; color: var(--muted); font-weight: 600; }
 
-    /* --- MÓDULO PASSO 3 (BYPASS ONLINE/FIX) --- */
-    .bypass-box-card {
-        background: radial-gradient(circle at top right, #3f0945 0%, #121212 60%);
-        border: 1px solid #d946ef;
-        display: flex; align-items: center; justify-content: space-between;
-        cursor: pointer;
-    }
-    .bypass-box-card:hover { border-color: #f0abfc; }
+    /* ---------- STATS ---------- */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 30px; }
+    .stat { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; transition: .2s; }
+    .stat:hover { transform: translateY(-3px); border-color: var(--border-2); }
+    .stat i { font-size: 1.1rem; }
+    .stat .v { font-family: var(--head); font-size: 1.5rem; color: #fff; margin-top: 10px; }
+    .stat .k { font-size: .76rem; color: var(--muted); font-weight: 600; margin-top: 2px; }
 
-    .step-number-purple { 
-        font-size: 0.7rem; font-weight: 900; color: #d946ef; text-transform: uppercase; 
-        letter-spacing: 1px; margin-bottom: 8px; display: block;
-    }
-    .step-btn-action-purple {
-        background: #d946ef; color: #000; width: 40px; height: 40px;
-        border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        font-size: 1.2rem; font-weight: bold; box-shadow: 0 0 20px rgba(217, 70, 239, 0.4);
-    }
+    /* ---------- SECTION ---------- */
+    .section { margin-bottom: 34px; }
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; }
+    .section-head h3 { font-family: var(--head); font-size: 1.2rem; color: #fff; }
+    .section-head span { font-size: .82rem; color: var(--muted); }
 
-    /* --- MÓDULO PASSO 4 (DENUVO) --- */
-    .denuvo-box-card {
-        background: radial-gradient(circle at top right, #083344 0%, #121212 60%);
-        border: 1px solid #06b6d4;
-        display: flex; align-items: center; justify-content: space-between;
-        cursor: pointer;
+    /* ---------- STEPS (timeline) ---------- */
+    .steps { display: flex; flex-direction: column; gap: 14px; }
+    .step {
+      display: flex; align-items: center; gap: 18px;
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 20px 22px; cursor: pointer; position: relative; overflow: hidden; transition: .2s;
     }
-    .denuvo-box-card:hover { border-color: #67e8f9; }
+    .step:hover { transform: translateY(-2px); border-color: var(--accent, var(--border-2)); }
+    .step::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent, var(--border-2)); opacity: .8; }
+    .step-idx {
+      width: 52px; height: 52px; border-radius: 14px; flex: none;
+      display: grid; place-items: center; font-size: 1.3rem;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+      color: var(--accent);
+    }
+    .step-body { flex: 1; }
+    .step-kicker { font-size: .66rem; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--accent); }
+    .step-body h4 { font-family: var(--head); color: #fff; font-size: 1.05rem; margin: 4px 0 3px; }
+    .step-body p { color: var(--muted); font-size: .84rem; }
+    .step-state { flex: none; display: flex; align-items: center; gap: 10px; }
+    .step-check {
+      width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border-2);
+      display: grid; place-items: center; color: var(--muted-2); font-size: .8rem; transition: .2s;
+    }
+    .step.done .step-check { background: var(--neon); border-color: var(--neon); color: #04130a; }
+    .step.done .step-idx { background: rgba(0,255,65,.12); border-color: rgba(0,255,65,.5); color: var(--neon); }
+    .step-go { color: var(--muted-2); font-size: 1.2rem; transition: .2s; }
+    .step:hover .step-go { color: #fff; transform: translateX(3px); }
 
-    .step-number-cyan { 
-        font-size: 0.7rem; font-weight: 900; color: #06b6d4; text-transform: uppercase; 
-        letter-spacing: 1px; margin-bottom: 8px; display: block;
-    }
-    .step-btn-action-cyan {
-        background: #06b6d4; color: #000; width: 40px; height: 40px;
-        border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        font-size: 1.2rem; font-weight: bold; box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
-    }
+    .step.s1 { --accent: var(--blue); }
+    .step.s2 { --accent: var(--orange); }
+    .step.s3 { --accent: var(--purple); }
+    .step.s4 { --accent: var(--teal); }
+    .step.s5 { --accent: var(--neon); }
 
-    /* --- MÓDULO PASSO 5 (LAUNCHER) --- */
-    .download-box {
-        display: flex; justify-content: space-between; align-items: center;
-        background: radial-gradient(circle at right, #0f2e15 0%, #121212 60%);
-        cursor: pointer;
+    /* ---------- LIBRARY ---------- */
+    .lib-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; }
+    .game {
+      aspect-ratio: 2/3; border-radius: 10px; overflow: hidden; position: relative;
+      background: var(--card-2); border: 1px solid var(--border); transition: .22s;
     }
-    .download-box:hover { border-color: var(--neon); }
+    .game img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .game:hover { transform: translateY(-4px) scale(1.02); border-color: var(--cyan); box-shadow: 0 10px 30px rgba(0,0,0,.5); z-index: 2; }
+    .game.more {
+      display: grid; place-items: center; text-align: center;
+      background: linear-gradient(160deg, #0e1a14, var(--card));
+      border-style: dashed; border-color: var(--border-2);
+    }
+    .game.more b { font-family: var(--head); font-size: 1.25rem; color: var(--neon); }
+    .game.more span { font-size: .68rem; color: var(--muted); display: block; margin-top: 4px; padding: 0 6px; }
 
-    .dl-info p { color: #a1a1aa; font-size: 0.9rem; max-width: 400px; margin-bottom: 20px; }
-    
-    .btn-download {
-        background: var(--neon); color: #000;
-        padding: 15px 30px; border-radius: 8px; font-weight: 800;
-        text-transform: uppercase; border: none; cursor: pointer;
-        display: flex; align-items: center; gap: 10px;
-        transition: 0.3s;
+    /* ---------- BOTTOM CARDS ---------- */
+    .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .promo {
+      border-radius: 18px; padding: 26px; border: 1px solid var(--border);
+      display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
     }
-    .btn-download:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0,255,65,0.3); }
+    .promo h3 { font-family: var(--head); color: #fff; font-size: 1.15rem; }
+    .promo p { font-size: .86rem; line-height: 1.5; }
+    .promo .btn { align-self: flex-start; padding: 13px 22px; border-radius: 10px; font-weight: 800; border: none; cursor: pointer; font-size: .85rem; display: inline-flex; gap: 9px; align-items: center; transition: .2s; }
+    .promo .btn:hover { transform: scale(1.03); }
+    .promo.wa { background: radial-gradient(500px 200px at 100% 0, rgba(37,211,102,.16), transparent), var(--card); border-color: rgba(37,211,102,.3); }
+    .promo.wa p { color: var(--muted); }
+    .promo.wa .btn { background: #25D366; color: #04210f; }
+    .promo.upd { background: radial-gradient(500px 200px at 100% 0, rgba(0,230,118,.14), transparent), var(--card); border-color: rgba(0,230,118,.28); }
+    .promo.upd p { color: var(--muted); }
+    .promo.upd .btn { background: var(--cyan); color: #042027; }
 
-    /* STATUS SIDE */
-    .status-card { text-align: center; }
-    .status-circle {
-        width: 100px; height: 100px; border-radius: 50%;
-        border: 4px solid var(--neon); margin: 0 auto 20px;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 2rem; color: var(--neon); background: var(--neon-dim);
-        box-shadow: 0 0 30px rgba(0,255,65,0.1);
-    }
-    .status-badge {
-        background: var(--neon-dim); color: var(--neon);
-        padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 700;
-        border: 1px solid var(--neon); display: inline-block; margin-top: 10px;
-    }
-
-    /* COMMUNITY CARD */
-    .community-card {
-        background: #25D366; /* WhatsApp Green */
-        color: #000;
-        text-align: center;
-    }
-    .community-card h3 { color: #000; margin-bottom: 10px; }
-    .community-card p { color: #000; font-weight: 600; font-size: 0.9rem; margin-bottom: 20px; }
-    .btn-whatsapp-group {
-        background: #fff; color: #25D366; width: 100%; padding: 12px; border-radius: 8px;
-        font-weight: 900; border: none; cursor: pointer; text-transform: uppercase;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.3s;
-    }
-    .btn-whatsapp-group:hover { transform: scale(1.05); }
-
-    /* BOTÃO WHATSAPP FIXO (SUPORTE) */
-    .fab-whatsapp {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 60px;
-        height: 60px;
-        background-color: #25D366;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 30px;
-        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-        cursor: pointer;
-        z-index: 999;
-        transition: transform 0.3s ease;
-        text-decoration: none;
-    }
-    .fab-whatsapp:hover {
-        transform: scale(1.1);
-    }
-    .fab-whatsapp::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: 2px solid #25D366;
-        animation: pulse-green 2s infinite;
-        z-index: -1;
-    }
-    @keyframes pulse-green {
-        0% { transform: scale(1); opacity: 1; }
-        100% { transform: scale(1.6); opacity: 0; }
-    }
-
-    /* MODAIS (GERAL) */
+    /* ====================== MODAIS ====================== */
     dialog {
-        background: #111; color: #fff; border: 1px solid #333; border-radius: 16px;
-        padding: 0; width: 90%; max-width: 800px;
-        box-shadow: 0 0 100px rgba(0,0,0,0.9);
-        position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: var(--card); color: #fff; border: 1px solid var(--border-2); border-radius: 18px;
+      padding: 0; width: 92%; max-width: 760px; box-shadow: 0 30px 120px rgba(0,0,0,.8);
+      inset: 0; margin: auto; height: fit-content; max-height: 92vh; overflow: auto;
     }
-    dialog::backdrop { background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
+    dialog::backdrop { background: rgba(3,3,5,.8); backdrop-filter: blur(6px); }
+    .modal-header { padding: 20px 26px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .modal-header h3 { font-family: var(--head); font-size: 1.1rem; }
+    .modal-close { background: var(--card-2); border: 1px solid var(--border); color: #fff; width: 34px; height: 34px; border-radius: 9px; font-size: 1rem; cursor: pointer; transition: .2s; }
+    .modal-close:hover { background: #2a2a32; }
+    .modal-body { padding: 26px; }
+    .modal-body .lead { color: var(--muted); line-height: 1.7; margin-bottom: 20px; font-size: .9rem; }
+    .modal-body .lead b { color: #fff; }
+    .video-container { width: 100%; aspect-ratio: 16/9; background: #000; position: relative; border-bottom: 1px solid var(--border); }
+    .video-container iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-    .modal-header {
-        padding: 20px 30px; border-bottom: 1px solid #222;
-        display: flex; justify-content: space-between; align-items: center;
-        background: #0f0f0f;
-    }
-    .modal-close { 
-        background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; 
-    }
-    .modal-body { padding: 30px; }
+    .mbtn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 15px; border-radius: 10px; font-weight: 800; border: none; cursor: pointer; font-size: .9rem; transition: .2s; text-transform: uppercase; letter-spacing: .3px; }
+    .mbtn:hover { transform: translateY(-2px); }
+    .mbtn.steam { background: #171a21; color: #fff; border: 1px solid #333; }
+    .mbtn.steam:hover { background: var(--blue); color: #000; }
+    .mbtn.copy { background: var(--orange); color: #1a1200; }
+    .mbtn.bypass { background: var(--purple); color: #1c0420; }
+    .mbtn.denuvo { background: var(--teal); color: #04181f; }
+    .mbtn.dl { background: linear-gradient(90deg, var(--neon), var(--cyan)); color: #04130a; }
 
-    /* VIDEO CONTAINER */
-    .video-container {
-        width: 100%; aspect-ratio: 16/9; background: #000;
-        position: relative; border-bottom: 1px solid #222;
-        overflow: hidden;
+    .code {
+      background: #000; padding: 16px; border-radius: 10px; border: 1px solid #2a2a32;
+      font-family: monospace; color: var(--neon); font-size: .9rem; word-break: break-all;
+      margin-bottom: 14px; user-select: all; display: flex; align-items: center; gap: 10px;
     }
-    .video-container iframe {
-        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    .code i { color: var(--orange); }
+
+    .note { margin-top: 16px; padding: 12px 14px; border-radius: 10px; background: rgba(0,230,118,.07); border: 1px solid rgba(0,230,118,.25); color: var(--cyan); font-size: .8rem; display: flex; gap: 10px; align-items: flex-start; }
+
+    /* ---------- FAB ---------- */
+    .fab {
+      position: fixed; bottom: 28px; right: 28px; width: 60px; height: 60px;
+      background: #25D366; color: #fff; border-radius: 50%; display: grid; place-items: center;
+      font-size: 28px; box-shadow: 0 8px 26px rgba(37,211,102,.45); z-index: 999; transition: .25s;
+    }
+    .fab:hover { transform: scale(1.1); }
+    .fab::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #25D366; animation: pulse 2s infinite; z-index: -1; }
+    @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.7); opacity: 0; } }
+
+    /* toast */
+    .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(120px); background: var(--card-2); border: 1px solid var(--border-2); color: #fff; padding: 14px 22px; border-radius: 12px; font-weight: 700; font-size: .88rem; z-index: 1200; display: flex; gap: 10px; align-items: center; transition: transform .35s cubic-bezier(.2,.9,.3,1.3); box-shadow: 0 12px 40px rgba(0,0,0,.5); }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast i { color: var(--neon); }
+
+    /* ====================== RESPONSIVO ====================== */
+    @media (max-width: 1100px) {
+      :root { --sidebar-w: 220px; }
+      .lib-grid { grid-template-columns: repeat(6, 1fr); }
+      .stats { grid-template-columns: repeat(2, 1fr); }
     }
 
-    /* BOTÕES DENTRO DO MODAL */
-    .btn-steam-official {
-        display: block; width: 100%; text-align: center;
-        background: #171a21; color: #fff; padding: 15px; border-radius: 8px;
-        text-decoration: none; font-weight: bold; border: 1px solid #333;
-        display: flex; align-items: center; justify-content: center; gap: 10px;
-        transition: 0.3s;
-    }
-    .btn-steam-official:hover { background: #66c0f4; color: #000; border-color: #66c0f4; }
+    @media (max-width: 860px) {
+      .shell { display: block; }
+      .sidebar {
+        position: sticky; top: 0; z-index: 60; height: auto;
+        flex-direction: row; align-items: center; justify-content: space-between;
+        padding: 12px 16px; border-right: none; border-bottom: 1px solid var(--border);
+        background: rgba(8,8,11,.94); backdrop-filter: blur(12px);
+      }
+      .brand { padding: 0; }
+      .nav, .nav-label { display: none; }
+      .side-card { margin: 0; padding: 0; background: none; border: none; }
+      .side-card h4, .side-card p { display: none; }
 
-    .script-code {
-        background: #000; padding: 15px; border-radius: 8px; border: 1px solid #333;
-        font-family: monospace; color: #00FF41; font-size: 0.85rem;
-        word-break: break-all; margin-bottom: 15px; user-select: all;
-    }
-    .btn-copy {
-        width: 100%; padding: 15px; background: #d97706; color: #000; border-radius: 8px;
-        font-weight: 800; border: none; cursor: pointer; font-size: 0.9rem;
-        display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
-    .btn-copy:hover { background: #fff; }
+      .main { padding: 20px 16px 96px; max-width: 100%; }
+      .topbar { margin-bottom: 16px; }
+      .greeting h1 { font-size: 1.3rem; }
+      .alert { padding: 16px; }
 
-    .btn-bypass {
-        width: 100%; padding: 15px; background: #d946ef; color: #000; border-radius: 8px;
-        font-weight: 800; border: none; cursor: pointer; font-size: 0.9rem;
-        display: flex; align-items: center; justify-content: center; gap: 8px;
-        text-decoration: none; /* Importante para link parecer botão */
-    }
-    .btn-bypass:hover { background: #fff; }
+      .hero { grid-template-columns: 1fr; padding: 26px 22px; gap: 18px; text-align: center; }
+      .hero p { margin: 0 auto; }
+      .ring-wrap { order: -1; }
 
-    .btn-denuvo {
-        width: 100%; padding: 15px; background: #06b6d4; color: #000; border-radius: 8px;
-        font-weight: 800; border: none; cursor: pointer; font-size: 0.9rem;
-        display: flex; align-items: center; justify-content: center; gap: 8px;
-        text-decoration: none;
+      .lib-grid { grid-template-columns: repeat(5, 1fr); }
+      .bottom { grid-template-columns: 1fr; }
     }
-    .btn-denuvo:hover { background: #fff; }
 
-    /* MODAL LAUNCHER (VIDEO) */
-    .btn-launcher-download {
-        display: block; width: 100%; text-align: center;
-        background: var(--neon); color: #000; padding: 15px; border-radius: 8px;
-        text-decoration: none; font-weight: bold; border: none; cursor: pointer;
-        display: flex; align-items: center; justify-content: center; gap: 10px;
-        transition: 0.3s;
-    }
-    .btn-launcher-download:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0,255,65,0.3); }
+    @media (max-width: 560px) {
+      .main { padding: 18px 14px 96px; }
+      .greeting h1 { font-size: 1.18rem; }
+      .greeting p { font-size: .82rem; }
+      .status-pills .pill { padding: 8px 12px; font-size: .72rem; }
+      .alert { gap: 12px; }
+      .alert .ic { width: 40px; height: 40px; font-size: 1rem; }
+      .alert h4 { font-size: .82rem; }
+      .alert p { font-size: .8rem; }
 
-    @media (max-width: 900px) {
-        .dashboard-grid { grid-template-columns: 1fr; }
-        .topbar { padding: 15px 20px; }
-        .fab-whatsapp { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
+      .hero { padding: 22px 18px; border-radius: 16px; }
+      .hero h2 { font-size: 1.45rem; }
+      .hero p { font-size: .86rem; }
+      .hero-counter { font-size: 2.4rem; margin-top: 12px; }
+      .ring { width: 118px; height: 118px; }
+      .ring-inner b { font-size: 1.4rem; }
+
+      .stats { gap: 10px; }
+      .stat { padding: 14px 16px; }
+      .stat .v { font-size: 1.2rem; }
+      .stat .k { font-size: .72rem; }
+
+      .section-head { flex-direction: column; gap: 2px; align-items: flex-start; }
+      .section-head h3 { font-size: 1.08rem; }
+
+      .step { padding: 15px 16px; gap: 13px; }
+      .step-idx { width: 44px; height: 44px; font-size: 1.1rem; border-radius: 12px; }
+      .step-body h4 { font-size: .97rem; }
+      .step-body p { font-size: .78rem; }
+      .step-go { display: none; }
+
+      .lib-grid { grid-template-columns: repeat(3, 1fr); gap: 9px; }
+      .game.more b { font-size: 1.05rem; }
+
+      .promo { padding: 22px; }
+      .modal-header { padding: 16px 18px; }
+      .modal-header h3 { font-size: 1rem; }
+      .modal-body { padding: 20px 18px; }
+      .modal-body .lead { font-size: .86rem; }
+
+      .fab { width: 54px; height: 54px; font-size: 24px; bottom: 18px; right: 18px; }
+      .toast { left: 16px; right: 16px; transform: translateY(120px); width: auto; }
+      .toast.show { transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="logo">OVER<span>ISE</span></div>
-    <div class="user-badge">CLIENTE VIP</div>
-  </header>
+<div class="shell">
 
-  <main class="main">
-    <div class="header-title">
+  <!-- ============== SIDEBAR ============== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">O</div>
+      <div>
+        <div class="brand-name">OVER<span>ISE</span></div>
+        <div class="brand-sub">Vitalício</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-label">Painel</div>
+      <a href="#topo" class="active" data-nav><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a href="#instalacao" data-nav><i class="fa-solid fa-list-check"></i> Instalação</a>
+      <a href="#biblioteca" data-nav><i class="fa-solid fa-layer-group"></i> Biblioteca</a>
+      <div class="nav-label">Conta</div>
+      <a href="#" onclick="window.open('https://chat.whatsapp.com/F5K8OEAX3niI9nAyffZwKa','_blank');return false;"><i class="fa-brands fa-whatsapp"></i> Grupo VIP</a>
+      <a href="#" onclick="window.open('https://wa.me/5568999215897','_blank');return false;"><i class="fa-solid fa-headset"></i> Suporte</a>
+    </nav>
+
+    <div class="side-card">
+      <span class="tier-pill"><i class="fa-solid fa-crown"></i> VITALÍCIO</span>
+      <h4>Catálogo Completo</h4>
+      <p>Todos os jogos liberados</p>
+    </div>
+  </aside>
+
+  <!-- ============== MAIN ============== -->
+  <main class="main" id="topo">
+
+    <div class="topbar">
+      <div class="greeting">
         <h1>Painel do Cliente</h1>
-        <div class="date-badge">Servidor: Online 🟢</div>
+        <p>Acesso total — sua biblioteca completa, para sempre.</p>
+      </div>
+      <div class="status-pills">
+        <span class="pill"><span class="dot"></span> Servidor Online</span>
+        <span class="pill gold"><i class="fa-solid fa-crown"></i> Plano Vitalício</span>
+      </div>
     </div>
 
-    <!-- UPDATE BANNER ADICIONADO AQUI -->
-    <div class="update-banner">
-        <div class="icon">
-            <i class="fa-solid fa-bell"></i>
-        </div>
-        <div class="update-banner-content">
-            <h4>ATUALIZAÇÃO DO SISTEMA</h4>
-            <p>Os jogos <strong>Pragmata</strong> e <strong>Resident Evil Requiem</strong> já estão disponíveis no pacote. Basta baixar o <strong>Launcher Atualizado (Passo 5)</strong> e seguir as instruções de bypass do <strong>Passo 4</strong> para funcionar perfeitamente.</p>
-        </div>
+    <!-- ALERT / NOVIDADES -->
+    <div class="alert">
+      <div class="ic"><i class="fa-solid fa-bell"></i></div>
+      <div>
+        <h4>Atualização do sistema</h4>
+        <p>Os jogos <b>Pragmata</b> e <b>Resident Evil Requiem</b> já estão disponíveis no pacote. Baixe o <b>Launcher atualizado (Passo 05)</b> e siga o <b>bypass do Passo 04</b> para rodar perfeitamente.</p>
+      </div>
     </div>
 
-    <div class="dashboard-grid">
-        
-        <div class="left-col">
-            
-            <div class="card step-card" onclick="openModal('steam')">
-                <div class="step-info">
-                    <span class="step-number">PASSO 01 - OBRIGATÓRIO</span>
-                    <h3>Instalar a Steam Oficial</h3>
-                    <p style="color:#aaa; font-size:0.9rem">Antes de tudo, tenha a plataforma instalada e atualizada.</p>
-                </div>
-                <div class="step-btn-action">➜</div>
-            </div>
-
-            <div class="card script-box-card" onclick="openModal('script')">
-                <div class="step-info">
-                    <span class="step-number-orange">PASSO 02 - CORREÇÃO</span>
-                    <h3>Remover Bugs (PowerShell)</h3>
-                    <p style="color:#aaa; font-size:0.9rem">Evite erros de permissão executando nosso script de limpeza.</p>
-                </div>
-                <div class="step-btn-action-orange">⚙️</div>
-            </div>
-
-             <div class="card bypass-box-card" onclick="openModal('bypass')">
-                <div class="step-info">
-                    <span class="step-number-purple">PASSO 03 - OPCIONAL</span>
-                    <h3>Fix: Jogos que não entram / Online</h3>
-                    <p style="color:#aaa; font-size:0.9rem">Necessário apenas para jogar títulos online ou se o jogo não abrir.</p>
-                </div>
-                <div class="step-btn-action-purple">🔓</div>
-            </div>
-
-            <div class="card denuvo-box-card" onclick="openModal('denuvo')">
-                <div class="step-info">
-                    <span class="step-number-cyan">PASSO 04 - OPCIONAL</span>
-                    <h3>Jogos Denuvo - Como desbloquear?</h3>
-                    <p style="color:#aaa; font-size:0.9rem">Baixe o Bypass específico para liberar jogos com proteção Denuvo.</p>
-                </div>
-                <div class="step-btn-action-cyan">🛡️</div>
-            </div>
-
-            <div class="card download-box" onclick="openModal('launcher')">
-                <div class="dl-info">
-                    <span class="step-number" style="color:var(--neon)">PASSO 05 - FINAL</span>
-                    <h3>Baixar Launcher Overise</h3>
-                    <p>Com o sistema pronto, baixe e instale nosso aplicativo.</p>
-                    <button class="btn-download">
-                        <span>⬇</span> BAIXAR OVERISE.EXE
-                    </button>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="right-col">
-            <div class="card status-card">
-                <div class="status-circle">✓</div>
-                <h3>SUA LICENÇA</h3>
-                <p style="color:#888; font-size:0.9rem">Acesso liberado.</p>
-                <div class="status-badge">VITALÍCIO</div>
-            </div>
-            
-            <div class="card community-card">
-                <h3>GRUPO VIP</h3>
-                <p>Entre na comunidade oficial no WhatsApp e receba novidades.</p>
-                <button class="btn-whatsapp-group" onclick="window.open('https://chat.whatsapp.com/F5K8OEAX3niI9nAyffZwKa', '_blank')">
-                    ENTRAR NO GRUPO
-                </button>
-            </div>
-        </div>
-
-    </div>
-  </main>
-
-  <a href="https://wa.me/5568999215897" target="_blank" class="fab-whatsapp" title="Suporte via WhatsApp">
-      <i class="fa-brands fa-whatsapp"></i>
-  </a>
-
-  <dialog id="modal-steam">
-      <div class="modal-header">
-          <h3>Passo 1: Instalar Steam</h3>
-          <button class="modal-close" onclick="closeModal('steam')">✕</button>
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <span class="hero-tag">Bem-vindo de volta</span>
+        <h2>Sua biblioteca <b>completa</b><br>está pronta.</h2>
+        <p>Acesso vitalício ao catálogo completo da OVERISE, com download direto pela Steam. Conclua os 5 passos abaixo e jogue tudo.</p>
+        <div class="hero-counter"><span id="counter">0</span><small>JOGOS LIBERADOS</small></div>
       </div>
-      <div class="video-container">
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/e8b9imle-Js" title="Instalar Steam" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      <div class="modal-body">
-          <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
-              Nosso sistema funciona "dentro" da Steam. Siga o vídeo acima para instalar a versão correta.<br><br>
-              1. Clique no botão abaixo para baixar.<br>
-              2. Instale e faça login com sua conta gratuita.
-          </p>
-          <a href="https://store.steampowered.com/about/" target="_blank" class="btn-steam-official">
-              <span style="font-size:1.2rem">☁️</span> BAIXAR STEAM OFICIAL
-          </a>
-      </div>
-  </dialog>
-
-  <dialog id="modal-script">
-      <div class="modal-header">
-          <h3>Passo 2: Script Anti-Bug</h3>
-          <button class="modal-close" onclick="closeModal('script')">✕</button>
-      </div>
-      <div class="video-container">
-           <iframe width="100%" height="100%" src="https://www.youtube.com/embed/cOUO-2fmybA" title="Remover Bugs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      <div class="modal-body">
-          <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
-              Para evitar erros de "Acesso Negado", execute este comando rápido:<br><br>
-              1. Copie o código abaixo.<br>
-              2. Abra o menu Iniciar, digite <b>"PowerShell"</b>.<br>
-              3. Clique com botão direito e <b>"Executar como Administrador"</b>.<br>
-              4. Cole o código e dê Enter.
-          </p>
-          
-          <div class="script-code" id="psCode">
-              irm steam.run | iex
+      <div class="ring-wrap">
+        <div class="ring" id="ring" style="--p:0">
+          <div class="ring-inner">
+            <b id="ringPct">0%</b>
+            <span>instalado</span>
           </div>
-          
-          <button class="btn-copy" onclick="copyCode()">
-              <span>📋</span> COPIAR CÓDIGO AGORA
-          </button>
+        </div>
+        <div class="ring-label" id="ringLabel">0 de 5 passos concluídos</div>
       </div>
-  </dialog>
+    </section>
 
-  <dialog id="modal-bypass">
-    <div class="modal-header">
-        <h3>Passo 3: Fix (Jogos que não entram / Online)</h3>
-        <button class="modal-close" onclick="closeModal('bypass')">✕</button>
-    </div>
-    <div class="video-container">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/aqB-Ronajp0" title="Instalar Bypass" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    </div>
-    <div class="modal-body">
-        <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
-            Este passo é necessário apenas se você deseja jogar em modo Online ou se algum jogo não estiver abrindo.<br><br>
-            1. Clique no botão abaixo para acessar o site de correção.<br>
-            2. Siga as instruções da página.
-        </p>
-        
-        <a href="https://generator.ryuu.lol/fixes" target="_blank" class="btn-bypass">
-            <span>🔓</span> ACESSAR SITE DE CORREÇÃO
-        </a>
-    </div>
+    <!-- STATS -->
+    <section class="stats">
+      <div class="stat"><i class="fa-solid fa-gamepad" style="color:var(--neon)"></i><div class="v">44.844</div><div class="k">Jogos disponíveis</div></div>
+      <div class="stat"><i class="fa-solid fa-crown" style="color:var(--gold)"></i><div class="v">Vitalício</div><div class="k">Seu plano · para sempre</div></div>
+      <div class="stat"><i class="fa-solid fa-bolt" style="color:var(--cyan)"></i><div class="v">Direto</div><div class="k">Download na Steam</div></div>
+      <div class="stat"><i class="fa-solid fa-headset" style="color:var(--purple)"></i><div class="v">24h</div><div class="k">Suporte VIP</div></div>
+    </section>
+
+    <!-- INSTALAÇÃO -->
+    <section class="section" id="instalacao">
+      <div class="section-head">
+        <h3>Configuração em 5 passos</h3>
+        <span id="stepsSummary">Toque em um passo para ver o tutorial</span>
+      </div>
+      <div class="steps">
+
+        <div class="step s1" data-step="1" onclick="openModal('steam')">
+          <div class="step-idx"><i class="fa-brands fa-steam"></i></div>
+          <div class="step-body">
+            <div class="step-kicker">Passo 01 · Obrigatório</div>
+            <h4>Instalar a Steam Oficial</h4>
+            <p>Nosso sistema funciona dentro da Steam. Instale e atualize a plataforma.</p>
+          </div>
+          <div class="step-state"><div class="step-check"><i class="fa-solid fa-check"></i></div><div class="step-go">➜</div></div>
+        </div>
+
+        <div class="step s2" data-step="2" onclick="openModal('script')">
+          <div class="step-idx"><i class="fa-solid fa-terminal"></i></div>
+          <div class="step-body">
+            <div class="step-kicker">Passo 02 · Correção</div>
+            <h4>Remover Bugs (PowerShell)</h4>
+            <p>Evite erros de permissão com nosso script de limpeza automático.</p>
+          </div>
+          <div class="step-state"><div class="step-check"><i class="fa-solid fa-check"></i></div><div class="step-go">➜</div></div>
+        </div>
+
+        <div class="step s3" data-step="3" onclick="openModal('bypass')">
+          <div class="step-idx"><i class="fa-solid fa-plug-circle-xmark"></i></div>
+          <div class="step-body">
+            <div class="step-kicker">Passo 03 · Opcional</div>
+            <h4>Fix: jogos que não entram / Online</h4>
+            <p>Necessário só para jogar online ou se algum jogo não abrir.</p>
+          </div>
+          <div class="step-state"><div class="step-check"><i class="fa-solid fa-check"></i></div><div class="step-go">➜</div></div>
+        </div>
+
+        <div class="step s4" data-step="4" onclick="openModal('denuvo')">
+          <div class="step-idx"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="step-body">
+            <div class="step-kicker">Passo 04 · Opcional</div>
+            <h4>Jogos Denuvo — como desbloquear</h4>
+            <p>Baixe o bypass específico para liberar títulos com proteção Denuvo.</p>
+          </div>
+          <div class="step-state"><div class="step-check"><i class="fa-solid fa-check"></i></div><div class="step-go">➜</div></div>
+        </div>
+
+        <div class="step s5" data-step="5" onclick="openModal('launcher')">
+          <div class="step-idx"><i class="fa-solid fa-download"></i></div>
+          <div class="step-body">
+            <div class="step-kicker">Passo 05 · Final</div>
+            <h4>Baixar o Launcher OVERISE</h4>
+            <p>Com tudo pronto, baixe o app e desbloqueie o catálogo completo.</p>
+          </div>
+          <div class="step-state"><div class="step-check"><i class="fa-solid fa-check"></i></div><div class="step-go">➜</div></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BIBLIOTECA -->
+    <section class="section" id="biblioteca">
+      <div class="section-head">
+        <h3>Em alta na sua biblioteca</h3>
+        <span>Os jogos mais famosos do momento — todos liberados</span>
+      </div>
+      <div class="lib-grid" id="libGrid"><!-- preenchido via JS --></div>
+    </section>
+
+    <!-- BOTTOM -->
+    <section class="bottom">
+      <div class="promo wa">
+        <div>
+          <h3><i class="fa-brands fa-whatsapp"></i> Grupo VIP no WhatsApp</h3>
+          <p>Entre na comunidade oficial e receba novidades, atualizações e novos jogos em primeira mão.</p>
+        </div>
+        <button class="btn" onclick="window.open('https://chat.whatsapp.com/F5K8OEAX3niI9nAyffZwKa','_blank')"><i class="fa-solid fa-arrow-right-to-bracket"></i> Entrar no grupo</button>
+      </div>
+      <div class="promo upd">
+        <div>
+          <h3><i class="fa-solid fa-rotate"></i> Atualizações constantes</h3>
+          <p>Seu catálogo cresce toda semana com os maiores lançamentos. Mantenha o launcher atualizado para receber tudo.</p>
+        </div>
+        <button class="btn" onclick="openModal('launcher')"><i class="fa-solid fa-download"></i> Atualizar launcher</button>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ============== MODAIS ============== -->
+<dialog id="modal-steam">
+  <div class="modal-header"><h3>Passo 1 · Instalar Steam</h3><button class="modal-close" onclick="closeModal('steam')">✕</button></div>
+  <div class="video-container"><iframe src="https://www.youtube.com/embed/e8b9imle-Js" title="Instalar Steam" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+  <div class="modal-body">
+    <p class="lead">Nosso sistema funciona "dentro" da Steam. Siga o vídeo para instalar a versão correta.<br><br>1. Clique no botão abaixo para baixar.<br>2. Instale e faça login com sua conta gratuita.</p>
+    <a href="https://store.steampowered.com/about/" target="_blank" class="mbtn steam" onclick="markDone(1)"><i class="fa-brands fa-steam"></i> Baixar Steam Oficial</a>
+  </div>
 </dialog>
 
-  <dialog id="modal-denuvo">
-    <div class="modal-header">
-        <h3>Passo 4: Jogos Denuvo - Como desbloquear?</h3>
-        <button class="modal-close" onclick="closeModal('denuvo')">✕</button>
-    </div>
-    <div class="video-container">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/gOJ7PWaEm8c" title="Como desbloquear Jogos Denuvo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    </div>
-    <div class="modal-body">
-        <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
-            Este passo é exclusivo para jogos que possuem a proteção <b>Denuvo</b>.<br><br>
-            1. Clique no botão abaixo para acessar a pasta do MediaFire com os arquivos.<br>
-            2. Baixe o Bypass correspondente ao jogo que você quer desbloquear.<br>
-            3. Extraia os arquivos e cole na pasta do jogo.
-        </p>
-        
-        <a href="http://www.mediafire.com/folder/x4ydk8excz9ji9j,qv8eo99h4wvhun9,nprjtpe51wrcxmk,81khnyjstitiffy,zvyw9rygljlvpzv/shared" target="_blank" class="btn-denuvo">
-            <span>🛡️</span> BAIXAR BYPASS DENUVO
-        </a>
-    </div>
+<dialog id="modal-script">
+  <div class="modal-header"><h3>Passo 2 · Script Anti-Bug</h3><button class="modal-close" onclick="closeModal('script')">✕</button></div>
+  <div class="video-container"><iframe src="https://www.youtube.com/embed/cOUO-2fmybA" title="Remover Bugs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+  <div class="modal-body">
+    <p class="lead">Para evitar erros de <b>"Acesso Negado"</b>, execute este comando rápido:<br><br>1. Copie o código abaixo.<br>2. Menu Iniciar → digite <b>"PowerShell"</b>.<br>3. Botão direito → <b>"Executar como Administrador"</b>.<br>4. Cole o código e dê Enter.</p>
+    <div class="code" id="psCode"><i class="fa-solid fa-terminal"></i> irm steam.run | iex</div>
+    <button class="mbtn copy" onclick="copyCode()"><i class="fa-solid fa-copy"></i> Copiar código agora</button>
+  </div>
 </dialog>
 
-  <dialog id="modal-launcher">
-      <div class="modal-header">
-          <h3>Passo 5: Instalar o Launcher</h3>
-          <button class="modal-close" onclick="closeModal('launcher')">✕</button>
-      </div>
-      <div class="video-container">
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/CfldgBewzV8" title="Instalar Launcher" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      <div class="modal-body">
-          <p style="color:#aaa; line-height:1.6; margin-bottom:20px">
-              Agora vamos instalar o software principal. Siga o vídeo acima para garantir que tudo funcione.<br><br>
-              1. Baixe o arquivo ZIP.<br>
-              2. Extraia e execute o "OVERISE.exe" como Administrador.<br>
-              3. Clique em "Desbloquear Steam".
-          </p>
-          
-          <button class="btn-launcher-download" onclick="window.open('https://www.mediafire.com/file/a61p6az21towj54/OVERISE_SEASON2.exe/file')">
-              <span>⬇</span> BAIXAR OVERISE LAUNCHER
-          </button>
-      </div>
-  </dialog>
+<dialog id="modal-bypass">
+  <div class="modal-header"><h3>Passo 3 · Fix (jogos que não entram / Online)</h3><button class="modal-close" onclick="closeModal('bypass')">✕</button></div>
+  <div class="video-container"><iframe src="https://www.youtube.com/embed/aqB-Ronajp0" title="Fix Online" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+  <div class="modal-body">
+    <p class="lead">Necessário apenas para jogar em modo <b>Online</b> ou se algum jogo não estiver abrindo.<br><br>1. Clique no botão abaixo para acessar o site de correção.<br>2. Siga as instruções da página.</p>
+    <a href="https://generator.ryuu.lol/fixes" target="_blank" class="mbtn bypass" onclick="markDone(3)"><i class="fa-solid fa-plug-circle-bolt"></i> Acessar site de correção</a>
+  </div>
+</dialog>
 
-  <script>
-      function openModal(type) {
-          document.getElementById(`modal-${type}`).showModal();
-      }
+<dialog id="modal-denuvo">
+  <div class="modal-header"><h3>Passo 4 · Jogos Denuvo — como desbloquear</h3><button class="modal-close" onclick="closeModal('denuvo')">✕</button></div>
+  <div class="video-container"><iframe src="https://www.youtube.com/embed/gOJ7PWaEm8c" title="Desbloquear Denuvo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+  <div class="modal-body">
+    <p class="lead">Exclusivo para jogos com proteção <b>Denuvo</b>:<br><br>1. Clique no botão abaixo para abrir a pasta no MediaFire.<br>2. Baixe o bypass do jogo que quer desbloquear.<br>3. Extraia e cole os arquivos na pasta do jogo.</p>
+    <a href="http://www.mediafire.com/folder/x4ydk8excz9ji9j,qv8eo99h4wvhun9,nprjtpe51wrcxmk,81khnyjstitiffy,zvyw9rygljlvpzv/shared" target="_blank" class="mbtn denuvo" onclick="markDone(4)"><i class="fa-solid fa-shield-halved"></i> Baixar Bypass Denuvo</a>
+  </div>
+</dialog>
 
-      function closeModal(type) {
-          document.getElementById(`modal-${type}`).close();
-      }
+<dialog id="modal-launcher">
+  <div class="modal-header"><h3>Passo 5 · Instalar o Launcher</h3><button class="modal-close" onclick="closeModal('launcher')">✕</button></div>
+  <div class="video-container"><iframe src="https://www.youtube.com/embed/CfldgBewzV8" title="Instalar Launcher" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+  <div class="modal-body">
+    <p class="lead">Agora instale o software principal — <b>OVERISE (catálogo completo)</b>:<br><br>1. Baixe o arquivo.<br>2. Execute o <b>"OVERISE.exe"</b> como Administrador.<br>3. Clique em <b>"Desbloquear Steam"</b> e aproveite.</p>
+    <button class="mbtn dl" onclick="downloadLauncher()"><i class="fa-solid fa-download"></i> Baixar OVERISE Launcher</button>
+    <div class="note"><i class="fa-solid fa-circle-info"></i><span>Sempre baixe a versão mais recente do launcher para receber os jogos novos automaticamente.</span></div>
+  </div>
+</dialog>
 
-      function copyCode() {
-          const codeText = document.getElementById("psCode").innerText.trim();
-          navigator.clipboard.writeText(codeText).then(() => {
-              alert("Código copiado! Abra o PowerShell como Administrador e cole.");
-          });
-      }
+<a href="https://wa.me/5568999215897" target="_blank" class="fab" title="Suporte via WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
 
-      // Fecha ao clicar fora
-      window.onclick = function(event) {
-          if (event.target.tagName === 'DIALOG') {
-              event.target.close();
-          }
-      }
-  </script>
+<div class="toast" id="toast"><i class="fa-solid fa-check"></i><span id="toastMsg">Feito!</span></div>
+
+<script>
+  /* ================= CONFIG ================= */
+  // Download do Launcher (catálogo completo / Season 2)
+  const DOWNLOAD_URL = "https://www.mediafire.com/file/a61p6az21towj54/OVERISE_SEASON2.exe/file";
+
+  const TOTAL_STEPS = 5;
+  const STORAGE_KEY = "overise_vitalicio_steps_v1";
+
+  /* ================= MODAIS ================= */
+  function openModal(t){ document.getElementById('modal-'+t).showModal(); }
+  function closeModal(t){ document.getElementById('modal-'+t).close(); }
+  window.addEventListener('click', e => { if (e.target.tagName === 'DIALOG') e.target.close(); });
+
+  /* ================= PROGRESSO ================= */
+  function loadDone(){ try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")); } catch { return new Set(); } }
+  function saveDone(set){ localStorage.setItem(STORAGE_KEY, JSON.stringify([...set])); }
+
+  function markDone(n){
+    const set = loadDone();
+    if (!set.has(n)) { set.add(n); saveDone(set); renderProgress(); toast("Passo " + n + " concluído!"); }
+  }
+
+  function renderProgress(){
+    const set = loadDone();
+    document.querySelectorAll('.step').forEach(el => {
+      el.classList.toggle('done', set.has(+el.dataset.step));
+    });
+    const pct = Math.round(set.size / TOTAL_STEPS * 100);
+    document.getElementById('ring').style.setProperty('--p', pct);
+    document.getElementById('ringPct').textContent = pct + '%';
+    document.getElementById('ringLabel').textContent = set.size + ' de ' + TOTAL_STEPS + ' passos concluídos';
+    document.getElementById('stepsSummary').textContent =
+      set.size === TOTAL_STEPS ? '✓ Configuração concluída — bom jogo!' : (set.size + '/' + TOTAL_STEPS + ' concluídos · toque para continuar');
+  }
+
+  /* ================= AÇÕES ================= */
+  function copyCode(){
+    navigator.clipboard.writeText("irm steam.run | iex").then(() => { markDone(2); toast("Código copiado!"); });
+  }
+  function downloadLauncher(){
+    markDone(5);
+    window.open(DOWNLOAD_URL, '_blank');
+  }
+
+  /* ================= TOAST ================= */
+  let toastTimer;
+  function toast(msg){
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  /* ================= CONTADOR ANIMADO ================= */
+  function animateCounter(){
+    const el = document.getElementById('counter');
+    const target = 44844; const dur = 1600; const t0 = performance.now();
+    function tick(now){
+      const p = Math.min((now - t0) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(eased * target).toLocaleString('pt-BR');
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = "44.844";
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* ================= BIBLIOTECA — JOGOS MAIS FAMOSOS ATUALMENTE ================= */
+  const FEATURED = [
+    2358720,  // Black Myth: Wukong
+    553850,   // Helldivers 2
+    2246340,  // Monster Hunter Wilds
+    2767030,  // Marvel Rivals
+    2694490,  // Path of Exile 2
+    1245620,  // Elden Ring
+    1086940,  // Baldur's Gate 3
+    1091500,  // Cyberpunk 2077
+    730,      // Counter-Strike 2
+    271590,   // GTA V
+    1771300,  // Kingdom Come: Deliverance II
+    1623730,  // Palworld
+    1174180,  // Red Dead Redemption 2
+    570,      // Dota 2
+    2050650,  // Resident Evil 4
+    578080,   // PUBG
+    990080,   // Hogwarts Legacy
+    1593500,  // God of War
+    359550,   // Rainbow Six Siege
+    1172470,  // Apex Legends
+    2457220,  // Avowed
+    1295660,  // Civilization VII
+    2001120   // Split Fiction
+  ];
+  function buildLibrary(){
+    const grid = document.getElementById('libGrid');
+    FEATURED.slice(0, 15).forEach(appid => {
+      const a = document.createElement('div'); a.className = 'game';
+      const img = document.createElement('img');
+      img.loading = 'lazy';
+      img.src = `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/library_600x900.jpg`;
+      img.onerror = function(){ this.onerror=null; this.src=`https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/header.jpg`; };
+      a.appendChild(img); grid.appendChild(a);
+    });
+    const more = document.createElement('div');
+    more.className = 'game more';
+    more.innerHTML = '<div><b>+44.829</b><span>e muito mais</span></div>';
+    grid.appendChild(more);
+  }
+
+  /* ================= NAV ATIVO AO ROLAR ================= */
+  function initNav(){
+    const links = [...document.querySelectorAll('[data-nav]')];
+    const map = links.map(l => ({ l, sec: document.querySelector(l.getAttribute('href')) })).filter(x => x.sec);
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          const hit = map.find(x => x.sec === e.target);
+          if (hit) hit.l.classList.add('active');
+        }
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    map.forEach(x => obs.observe(x.sec));
+  }
+
+  /* ================= INIT ================= */
+  renderProgress();
+  buildLibrary();
+  initNav();
+  animateCounter();
+</script>
 
 </body>
 </html>
