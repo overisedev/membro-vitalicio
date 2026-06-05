@@ -618,8 +618,8 @@
 
 <script>
   /* ================= CONFIG ================= */
-  // Download do Launcher (catálogo completo / Season 2)
-  const DOWNLOAD_URL = "sha256:26af7f55eadbdd8a3b6988b2735beca39f7fc61d3b53927919c08e3833b73d8c";
+  // Download do Launcher VITALÍCIO / Season 2 (GitHub Releases — link permanente)
+  const DOWNLOAD_URL = "https://github.com/overisedev/apps/releases/latest/download/OVERISE_VITALICIO.zip";
 
   const TOTAL_STEPS = 5;
   const STORAGE_KEY = "overise_vitalicio_steps_v1";
@@ -657,7 +657,9 @@
   }
   function downloadLauncher(){
     markDone(5);
-    window.open(DOWNLOAD_URL, '_blank');
+    const a = document.createElement('a');
+    a.href = DOWNLOAD_URL; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
   }
 
   /* ================= TOAST ================= */
