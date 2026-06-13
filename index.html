@@ -442,7 +442,7 @@
       <div class="ic"><i class="fa-solid fa-bell"></i></div>
       <div>
         <h4>Atualização do sistema</h4>
-        <p>Os jogos <b>Pragmata</b> e <b>Resident Evil Requiem</b> já estão disponíveis no pacote. Baixe o <b>Launcher atualizado (Passo 05)</b> e siga o <b>bypass do Passo 04</b> para rodar perfeitamente.</p>
+        <p>Os jogos <b>Pragmata</b> e <b>Resident Evil Requiem</b> já estão disponíveis no pacote. Baixe o <b>Launcher atualizado (Passo 04)</b> e siga o <b>bypass do Passo 03</b> para rodar perfeitamente.</p>
       </div>
     </div>
 
@@ -476,7 +476,7 @@
     <!-- INSTALAÇÃO -->
     <section class="section" id="instalacao">
       <div class="section-head">
-        <h3>Configuração em 5 passos</h3>
+        <h3>Configuração em 4 passos</h3>
         <span id="stepsSummary">Toque em um passo para ver o tutorial</span>
       </div>
       <div class="steps">
@@ -491,40 +491,30 @@
           <div class="step-state"><div class="step-check"><i class="fa-solid fa-check"></i></div><div class="step-go">➜</div></div>
         </div>
 
-        <div class="step s2" data-step="2" onclick="openModal('script')">
-          <div class="step-idx"><i class="fa-solid fa-terminal"></i></div>
-          <div class="step-body">
-            <div class="step-kicker">Passo 02 · Correção</div>
-            <h4>Remover Bugs (PowerShell)</h4>
-            <p>Evite erros de permissão com nosso script de limpeza automático.</p>
-          </div>
-          <div class="step-state"><div class="step-check"><i class="fa-solid fa-check"></i></div><div class="step-go">➜</div></div>
-        </div>
-
-        <div class="step s3" data-step="3" onclick="openModal('bypass')">
+        <div class="step s2" data-step="2" onclick="openModal('bypass')">
           <div class="step-idx"><i class="fa-solid fa-plug-circle-xmark"></i></div>
           <div class="step-body">
-            <div class="step-kicker">Passo 03 · Opcional</div>
+            <div class="step-kicker">Passo 02 · Opcional</div>
             <h4>Fix: jogos que não entram / Online</h4>
             <p>Necessário só para jogar online ou se algum jogo não abrir.</p>
           </div>
           <div class="step-state"><div class="step-check"><i class="fa-solid fa-check"></i></div><div class="step-go">➜</div></div>
         </div>
 
-        <div class="step s4" data-step="4" onclick="openModal('denuvo')">
+        <div class="step s3" data-step="3" onclick="openModal('denuvo')">
           <div class="step-idx"><i class="fa-solid fa-shield-halved"></i></div>
           <div class="step-body">
-            <div class="step-kicker">Passo 04 · Opcional</div>
+            <div class="step-kicker">Passo 03 · Opcional</div>
             <h4>Jogos Denuvo — como desbloquear</h4>
             <p>Baixe o bypass específico para liberar títulos com proteção Denuvo.</p>
           </div>
           <div class="step-state"><div class="step-check"><i class="fa-solid fa-check"></i></div><div class="step-go">➜</div></div>
         </div>
 
-        <div class="step s5" data-step="5" onclick="openModal('launcher')">
+        <div class="step s4" data-step="4" onclick="openModal('launcher')">
           <div class="step-idx"><i class="fa-solid fa-download"></i></div>
           <div class="step-body">
-            <div class="step-kicker">Passo 05 · Final</div>
+            <div class="step-kicker">Passo 04 · Final</div>
             <h4>Baixar o Launcher OVERISE</h4>
             <p>Com tudo pronto, baixe o app e desbloqueie o catálogo completo.</p>
           </div>
@@ -574,36 +564,26 @@
   </div>
 </dialog>
 
-<dialog id="modal-script">
-  <div class="modal-header"><h3>Passo 2 · Script Anti-Bug</h3><button class="modal-close" onclick="closeModal('script')">✕</button></div>
-  <div class="video-container"><iframe src="https://www.youtube.com/embed/cOUO-2fmybA" title="Remover Bugs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-  <div class="modal-body">
-    <p class="lead">Para evitar erros de <b>"Acesso Negado"</b>, execute este comando rápido:<br><br>1. Copie o código abaixo.<br>2. Menu Iniciar → digite <b>"PowerShell"</b>.<br>3. Botão direito → <b>"Executar como Administrador"</b>.<br>4. Cole o código e dê Enter.</p>
-    <div class="code" id="psCode"><i class="fa-solid fa-terminal"></i> irm steam.run | iex</div>
-    <button class="mbtn copy" onclick="copyCode()"><i class="fa-solid fa-copy"></i> Copiar código agora</button>
-  </div>
-</dialog>
-
 <dialog id="modal-bypass">
-  <div class="modal-header"><h3>Passo 3 · Fix (jogos que não entram / Online)</h3><button class="modal-close" onclick="closeModal('bypass')">✕</button></div>
+  <div class="modal-header"><h3>Passo 2 · Fix (jogos que não entram / Online)</h3><button class="modal-close" onclick="closeModal('bypass')">✕</button></div>
   <div class="video-container"><iframe src="https://www.youtube.com/embed/aqB-Ronajp0" title="Fix Online" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
   <div class="modal-body">
     <p class="lead">Necessário apenas para jogar em modo <b>Online</b> ou se algum jogo não estiver abrindo.<br><br>1. Clique no botão abaixo para acessar o site de correção.<br>2. Siga as instruções da página.</p>
-    <a href="https://generator.ryuu.lol/fixes" target="_blank" class="mbtn bypass" onclick="markDone(3)"><i class="fa-solid fa-plug-circle-bolt"></i> Acessar site de correção</a>
+    <a href="https://generator.ryuu.lol/fixes" target="_blank" class="mbtn bypass" onclick="markDone(2)"><i class="fa-solid fa-plug-circle-bolt"></i> Acessar site de correção</a>
   </div>
 </dialog>
 
 <dialog id="modal-denuvo">
-  <div class="modal-header"><h3>Passo 4 · Jogos Denuvo — como desbloquear</h3><button class="modal-close" onclick="closeModal('denuvo')">✕</button></div>
+  <div class="modal-header"><h3>Passo 3 · Jogos Denuvo — como desbloquear</h3><button class="modal-close" onclick="closeModal('denuvo')">✕</button></div>
   <div class="video-container"><iframe src="https://www.youtube.com/embed/gOJ7PWaEm8c" title="Desbloquear Denuvo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
   <div class="modal-body">
     <p class="lead">Exclusivo para jogos com proteção <b>Denuvo</b>:<br><br>1. Clique no botão abaixo para abrir a pasta no MediaFire.<br>2. Baixe o bypass do jogo que quer desbloquear.<br>3. Extraia e cole os arquivos na pasta do jogo.</p>
-    <a href="http://www.mediafire.com/folder/x4ydk8excz9ji9j,qv8eo99h4wvhun9,nprjtpe51wrcxmk,81khnyjstitiffy,zvyw9rygljlvpzv,4dxam9szg5sjikj/shared" target="_blank" class="mbtn denuvo" onclick="markDone(4)"><i class="fa-solid fa-shield-halved"></i> Baixar Bypass Denuvo</a>
+    <a href="http://www.mediafire.com/folder/x4ydk8excz9ji9j,qv8eo99h4wvhun9,nprjtpe51wrcxmk,81khnyjstitiffy,zvyw9rygljlvpzv/shared" target="_blank" class="mbtn denuvo" onclick="markDone(3)"><i class="fa-solid fa-shield-halved"></i> Baixar Bypass Denuvo</a>
   </div>
 </dialog>
 
 <dialog id="modal-launcher">
-  <div class="modal-header"><h3>Passo 5 · Instalar o Launcher</h3><button class="modal-close" onclick="closeModal('launcher')">✕</button></div>
+  <div class="modal-header"><h3>Passo 4 · Instalar o Launcher</h3><button class="modal-close" onclick="closeModal('launcher')">✕</button></div>
   <div class="video-container"><iframe src="https://www.youtube.com/embed/CfldgBewzV8" title="Instalar Launcher" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
   <div class="modal-body">
     <p class="lead">Agora instale o app <b>OVERISE</b> (plano Vitalício):<br><br>1. Baixe e <b>extraia</b> o ZIP (deixe o <b>OVERISE_DATA.zip na mesma pasta</b> do .exe).<br>2. Execute o <b>"OVERISE.exe"</b>.<br>3. Entre com o <b>email da sua compra</b>.<br>4. Clique em <b>"Desbloquear"</b> — o app instala tudo e libera seus jogos.</p>
@@ -621,7 +601,7 @@
   // Download do Launcher VITALÍCIO / Season 2 (GitHub Releases — link permanente)
   const DOWNLOAD_URL = "https://github.com/overisedev/apps/releases/latest/download/OVERISE.zip";
 
-  const TOTAL_STEPS = 5;
+  const TOTAL_STEPS = 4;
   const STORAGE_KEY = "overise_vitalicio_steps_v1";
 
   /* ================= MODAIS ================= */
@@ -652,11 +632,8 @@
   }
 
   /* ================= AÇÕES ================= */
-  function copyCode(){
-    navigator.clipboard.writeText("irm steam.run | iex").then(() => { markDone(2); toast("Código copiado!"); });
-  }
   function downloadLauncher(){
-    markDone(5);
+    markDone(4);
     const a = document.createElement('a');
     a.href = DOWNLOAD_URL; a.rel = 'noopener';
     document.body.appendChild(a); a.click(); a.remove();
