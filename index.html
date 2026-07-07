@@ -728,5 +728,61 @@
   animateCounter();
 </script>
 
+
+<!-- ===== TUTORIAL SPOTLIGHT (OVERISE) adaptavel ===== -->
+<style>
+.tut-dim{position:fixed;inset:0;background:rgba(4,5,7,.82);z-index:1500;opacity:0;transition:.25s;pointer-events:none}
+.tut-on .tut-dim{opacity:1;pointer-events:auto}
+.tut-hole{position:fixed;border-radius:16px;box-shadow:0 0 0 2px #2fb46a,0 0 22px rgba(47,180,106,.30),0 0 0 9999px rgba(4,5,7,.82);z-index:1510;transition:.32s cubic-bezier(.2,.9,.3,1);pointer-events:none;opacity:0}
+.tut-on .tut-hole{opacity:1}
+.tut-tip{position:fixed;width:min(410px,92vw);background:#15151a;border:1px solid #2c2c34;border-radius:16px;padding:22px;z-index:1520;box-shadow:0 24px 70px rgba(0,0,0,.6);transition:.32s cubic-bezier(.2,.9,.3,1);opacity:0;pointer-events:none}
+.tut-on .tut-tip{opacity:1;pointer-events:auto}
+.tut-tip h4{font-family:'Sora',sans-serif;font-size:1.1rem;color:#fff;margin-bottom:9px;display:flex;align-items:center;gap:9px}
+.tut-tip h4 .tg{width:9px;height:9px;border-radius:50%;background:#2fb46a;flex:none}
+.tut-tip p{color:#9a9aa4;font-size:.9rem;line-height:1.6}.tut-tip p b{color:#eaeaee;font-weight:600}
+.tut-dots{display:flex;gap:5px;margin:16px 0;flex-wrap:wrap}.tut-dots i{width:14px;height:5px;border-radius:3px;background:#2c2c34;transition:.2s}.tut-dots i.on{background:#2fb46a;width:22px}
+.tut-row{display:flex;align-items:center;justify-content:space-between}.tut-count{color:#8a8a94;font-size:.82rem}
+.tut-btns{display:flex;gap:8px}.tut-b{padding:9px 16px;border-radius:9px;font-size:.85rem;font-weight:700;cursor:pointer;border:none}
+.tut-prev{background:#1d1d22;color:#9a9aa4;border:1px solid #2c2c34}.tut-next{background:#2fb46a;color:#04130a;font-weight:800}
+.tut-skip{position:fixed;top:16px;right:18px;z-index:1520;background:#f2f2f4;color:#111;font-weight:700;padding:10px 18px;border-radius:11px;font-size:.85rem;cursor:pointer;opacity:0;transition:.25s;pointer-events:none}
+.tut-on .tut-skip{opacity:1;pointer-events:auto}
+</style>
+<div class="tut-dim"></div><div class="tut-hole" id="tutHole"></div>
+<div class="tut-skip" id="tutSkip">Pular tutorial</div>
+<div class="tut-tip" id="tutTip"><h4 id="tutTitle"></h4><p id="tutText"></p><div class="tut-dots" id="tutDots"></div><div class="tut-row"><span class="tut-count" id="tutCount"></span><div class="tut-btns"><button class="tut-b tut-prev" id="tutPrev">Anterior</button><button class="tut-b tut-next" id="tutNext">Próximo</button></div></div></div>
+<script>
+(function(){
+ var STEPS=[{sel:'.hero',t:'Bem-vindo à sua área!',h:'Aqui você configura tudo e joga. Vou te mostrar os passos, leva 20 segundos.'},
+            {sel:'#instalacao',t:'Siga os passos em ordem',h:'É só seguir de cima pra baixo. Cada passo abre um vídeo curto ensinando o que fazer.'}];
+ [].forEach.call(document.querySelectorAll('.step'),function(el){
+   var title=(((el.querySelector('h4')||{}).textContent)||'').trim(),low=title.toLowerCase();
+   var t=title,h='Clique neste passo pra ver o tutorial em vídeo.';
+   var isDen=low.indexOf('denuvo')>=0,isFix=(low.indexOf('fix')>=0||low.indexOf('online')>=0||low.indexOf('bypass')>=0);
+   if(isDen&&isFix){t=title+' (importante!)';h='Só pra casos específicos: pra jogar <b>ONLINE</b> ou rodar jogos com <b>Denuvo</b> (os mais novos). Baixe o <b>bypass do jogo</b> e siga o passo. Sem ele, esses jogos não abrem.';}
+   else if(isDen){t=title+' (fique atento!)';h='Os jogos <b>mais novos</b> têm proteção <b>Denuvo</b>. Pra rodarem, baixe aqui o <b>bypass do jogo</b> e cole na pasta dele. Sem isso, o jogo abre e fecha sozinho.';}
+   else if(isFix){t=title+' (guarde este!)';h='Se um jogo <b>não abrir</b>, ou pra jogar <b>ONLINE com amigos</b>, é aqui que resolve. Roda o fix e o jogo volta a funcionar.';}
+   else if(low.indexOf('steam')>=0){h='Instale a Steam oficial. Clique no passo pra ver o vídeo.';}
+   else if(low.indexOf('launcher')>=0||low.indexOf('baixar')>=0||low.indexOf('download')>=0){h='Baixe o launcher OVERISE e desbloqueie <b>todos os jogos</b> direto na sua Steam.';}
+   STEPS.push({el:el,t:t,h:h});
+ });
+ STEPS.push({sel:'.ring-wrap',t:'Acompanhe seu progresso',h:'Este anel enche conforme você conclui os passos. 100% = tudo pronto pra jogar!'});
+ var KEY='overise_tut_membros_v1',i=0,$=function(id){return document.getElementById(id)};
+ var hole=$('tutHole'),tip=$('tutTip'),curEl=null;
+ function place(el){var r=el.getBoundingClientRect(),p=8;hole.style.left=(r.left-p)+'px';hole.style.top=(r.top-p)+'px';hole.style.width=(r.width+p*2)+'px';hole.style.height=(r.height+p*2)+'px';
+   var th=tip.offsetHeight||220,tw=tip.offsetWidth||390,top=r.bottom+14,left=Math.min(Math.max(12,r.left),innerWidth-tw-12);
+   if(top+th>innerHeight-12)top=Math.max(12,r.top-th-14);tip.style.top=top+'px';tip.style.left=left+'px';}
+ function show(n){i=n;var s=STEPS[n];var el=s.el||document.querySelector(s.sel);if(!el)return next();curEl=el;
+   document.documentElement.style.overflow='';document.body.style.overflow='';el.scrollIntoView({block:'center',behavior:'smooth'});
+   $('tutTitle').innerHTML='<span class="tg"></span>'+s.t;$('tutText').innerHTML=s.h;$('tutCount').textContent=(n+1)+' de '+STEPS.length;
+   $('tutDots').innerHTML=STEPS.map(function(_,k){return '<i class="'+(k===n?'on':'')+'"></i>'}).join('');
+   $('tutPrev').style.visibility=n===0?'hidden':'visible';$('tutNext').textContent=n===STEPS.length-1?'Entendi!':'Próximo';
+   setTimeout(function(){place(el);document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden';},480);}
+ function next(){i<STEPS.length-1?show(i+1):end()}function prev(){i>0&&show(i-1)}
+ function end(){document.documentElement.classList.remove('tut-on');document.documentElement.style.overflow='';document.body.style.overflow='';try{localStorage.setItem(KEY,'1')}catch(e){}}
+ $('tutNext').onclick=next;$('tutPrev').onclick=prev;$('tutSkip').onclick=end;addEventListener('resize',function(){if(curEl)place(curEl)});
+ var force=location.search.indexOf('tut')>=0,seen=false;try{seen=localStorage.getItem(KEY)==='1'}catch(e){}
+ if(force||!seen){document.documentElement.classList.add('tut-on');setTimeout(function(){show(0)},450);}
+})();
+</script>
 </body>
 </html>
