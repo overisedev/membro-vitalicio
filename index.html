@@ -247,7 +247,7 @@
     .game.more span { font-size: .68rem; color: var(--muted); display: block; margin-top: 4px; padding: 0 6px; }
 
     /* ---------- BOTTOM CARDS ---------- */
-    .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .bottom { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .promo {
       border-radius: 18px; padding: 26px; border: 1px solid var(--border);
       display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
@@ -259,6 +259,9 @@
     .promo.wa { background: radial-gradient(500px 200px at 100% 0, rgba(37,211,102,.16), transparent), var(--card); border-color: rgba(37,211,102,.3); }
     .promo.wa p { color: var(--muted); }
     .promo.wa .btn { background: #25D366; color: #04210f; }
+    .promo.dc { background: radial-gradient(500px 200px at 100% 0, rgba(88,101,242,.18), transparent), var(--card); border-color: rgba(88,101,242,.35); }
+    .promo.dc p { color: var(--muted); }
+    .promo.dc .btn { background: #5865F2; color: #fff; }
     .promo.upd { background: radial-gradient(500px 200px at 100% 0, rgba(0,230,118,.14), transparent), var(--card); border-color: rgba(0,230,118,.28); }
     .promo.upd p { color: var(--muted); }
     .promo.upd .btn { background: var(--cyan); color: #042027; }
@@ -413,6 +416,7 @@
       <a href="#biblioteca" data-nav><i class="fa-solid fa-layer-group"></i> Biblioteca</a>
       <div class="nav-label">Conta</div>
       <a href="#" onclick="window.open('https://chat.whatsapp.com/DgVSeo9deWz6TSe2sC1LGn','_blank');return false;"><i class="fa-brands fa-whatsapp"></i> Grupo VIP</a>
+      <a href="#" onclick="window.open('https://discord.gg/MZwDa9jvUd','_blank');return false;"><i class="fa-brands fa-discord"></i> Discord</a>
       <a href="#" onclick="window.open('https://wa.me/5568996081689','_blank');return false;"><i class="fa-solid fa-headset"></i> Suporte</a>
     </nav>
 
@@ -543,6 +547,13 @@
           <p>Entre na comunidade oficial e receba novidades, atualizações e novos jogos em primeira mão.</p>
         </div>
         <button class="btn" onclick="window.open('https://chat.whatsapp.com/DgVSeo9deWz6TSe2sC1LGn','_blank')"><i class="fa-solid fa-arrow-right-to-bracket"></i> Entrar no grupo</button>
+      </div>
+      <div class="promo dc">
+        <div>
+          <h3><i class="fa-brands fa-discord"></i> Comunidade no Discord</h3>
+          <p>Converse com outros jogadores, tire dúvidas e pegue o seu cargo de membro no servidor oficial.</p>
+        </div>
+        <button class="btn" onclick="window.open('https://discord.gg/MZwDa9jvUd','_blank')"><i class="fa-solid fa-arrow-right-to-bracket"></i> Entrar no Discord</button>
       </div>
       <div class="promo upd">
         <div>
